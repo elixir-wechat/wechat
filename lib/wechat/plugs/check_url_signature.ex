@@ -1,4 +1,6 @@
 defmodule Wechat.Plugs.CheckUrlSignature do
+  @moduledoc false
+
   import Plug.Conn
 
   def init(opts) do
@@ -6,12 +8,9 @@ defmodule Wechat.Plugs.CheckUrlSignature do
   end
 
   def call(conn = %Plug.Conn{params: params}, [token: token]) do
-    IO.inspect conn
     %{"timestamp" => timestamp, "nonce" => nonce,
       "signature" => signature} = params
     my_signature = sign [token, timestamp, nonce]
-    IO.puts my_signature
-    IO.puts signature
     case my_signature == signature do
       true ->
         conn
