@@ -1,5 +1,7 @@
 defmodule Wechat.User do
-  @moduledoc false
+  @moduledoc """
+  User API.
+  """
 
   import Wechat.ApiBase
 

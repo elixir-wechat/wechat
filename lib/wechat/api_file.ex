@@ -1,5 +1,7 @@
 defmodule Wechat.ApiFile do
-  @moduledoc false
+  @moduledoc """
+  HTTP request for file api.
+  """
 
   use HTTPoison.Base
   alias HTTPoison.Response

@@ -1,5 +1,7 @@
 defmodule Wechat.Plugs.CheckMsgSignature do
-  @moduledoc false
+  @moduledoc """
+  Plug to parse xml message.
+  """
 
   import Plug.Conn
 
@@ -14,7 +16,6 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   end
 
 
-  @doc """
   # attrs
   # [{<<"tousername">>,[],[<<"gh_7e071da28932">>]},
   # {<<"fromusername">>,[],[<<"oi00OuKAhA8bm5okpaIDs7WmUZr4">>]},
@@ -32,7 +33,6 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   #   msgtype => <<"text">>,
   #   tousername => <<"gh_7e071da28932">>
   # }
-  """
   defp parse_xml(body) do
     [{"xml", [], attrs}] = Floki.find(body, "xml")
     for {key, _, [value]} <- attrs, into: %{} do

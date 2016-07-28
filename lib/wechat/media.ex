@@ -1,5 +1,7 @@
 defmodule Wechat.Media do
-  @moduledoc false
+  @moduledoc """
+  Media API. Only provide download at the moment.
+  """
 
   import Wechat.ApiFile
 

@@ -1,5 +1,7 @@
 defmodule Wechat.ApiBase do
-  @moduledoc false
+  @moduledoc """
+  HTTP request for basic api.
+  """
 
   use HTTPoison.Base
 

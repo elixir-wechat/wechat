@@ -1,5 +1,7 @@
 defmodule Wechat.AccessToken do
-  @moduledoc false
+  @moduledoc """
+  AccessToken API.
+  """
 
   import Wechat.ApiBase
 

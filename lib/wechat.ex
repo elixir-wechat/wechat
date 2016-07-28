@@ -1,5 +1,7 @@
 defmodule Wechat do
-  @moduledoc false
+  @moduledoc """
+  Assemble config and provide access to access_token.
+  """
 
   def config do
     default_config

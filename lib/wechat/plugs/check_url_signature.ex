@@ -1,5 +1,7 @@
 defmodule Wechat.Plugs.CheckUrlSignature do
-  @moduledoc false
+  @moduledoc """
+  Plug to check url signature.
+  """
 
   import Plug.Conn
 
