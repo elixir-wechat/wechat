@@ -35,8 +35,8 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   """
   defp parse_xml(body) do
     [{"xml", [], attrs}] = Floki.find(body, "xml")
-    List.foldl(attrs, %{}, fn({key, [], [value]}, acc)->
-      Map.put_new(acc, String.to_atom(key), value)
-    end)
+    for {key, _, [value]} <- attrs, into: %{} do
+      {String.to_atom(key), value}
+    end
   end
 end
