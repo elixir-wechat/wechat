@@ -29,7 +29,8 @@ Add config in `config.exs`:
   ```
   config :wechat, Wechat,
     appid: "wechat app id",
-    secret: "wechat app secret"
+    secret: "wechat app secret",
+    token: "wechat token"
   ```
 
 ## Usage
@@ -58,3 +59,47 @@ iex> Wechat.User.info("oi00OuKAhA8bm5okpaIDs7WmUZr4")
 iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-xm8hX3nPWCA")
 %{errcode: 40007, errmsg: "invalid media_id hint: [uJTJra0597e297]"}
 ```
+
+## Use plug in Phonenix controller
+
+router.ex
+
+``` elixir
+defmodule MyApp.Router do
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/wechat", MyApp do
+    pipe_through :api
+
+    # validate wechat server config
+    get "/", WechatController, :index
+
+    # receive wechat push message
+    post "/", WechatController, :create
+  end
+end
+```
+
+* `Wechat.Plugs.CheckUrlSignature`
+
+  Automatically check url signature
+
+  Reference [接入指南](http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319&token=&lang=zh_CN)
+
+    ``` elixir
+    defmodule MyApp.WechatController do
+      use MyApp.Web, :controller
+
+      plug Wechat.Plugs.CheckUrlSignature
+
+      def index(conn, %{"echostr" => echostr}) do
+        text conn, echostr
+      end
+
+      def create(conn, _params) do
+        ...
+      end
+    end
+    ```
