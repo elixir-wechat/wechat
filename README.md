@@ -1,5 +1,7 @@
 # Wechat
 
+[![Join the chat at https://gitter.im/goofansu/wechat_elixir](https://badges.gitter.im/goofansu/wechat_elixir.svg)](https://gitter.im/goofansu/wechat_elixir?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Wechat API wrapper in Elixir.
 
 ## Installation
