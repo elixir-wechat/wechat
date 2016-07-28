@@ -15,7 +15,7 @@ defmodule Wechat.Plugs.CheckMsgSignature do
 
 
   @doc """
-  # body
+  # attrs
   # [{<<"tousername">>,[],[<<"gh_7e071da28932">>]},
   # {<<"fromusername">>,[],[<<"oi00OuKAhA8bm5okpaIDs7WmUZr4">>]},
   # {<<"createtime">>,[],[<<"1468999644">>]},
