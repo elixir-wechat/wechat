@@ -12,9 +12,11 @@ defmodule Wechat do
 
   def access_token do
     token_info = read_token_from_file
-    if access_token_expired?(token_info) do
-      token_info = refresh_access_token
-    end
+    token_info =
+      case access_token_expired?(token_info) do
+        true -> refresh_access_token
+        false -> token_info
+      end
     token_info.access_token
   end
 
