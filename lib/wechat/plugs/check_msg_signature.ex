@@ -4,10 +4,10 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   import Plug.Conn
 
   def init(opts) do
-    Keyword.merge(opts, token: Wechat.config[:token])
+    opts
   end
 
-  def call(conn, opts) do
+  def call(conn, _opts) do
     {:ok, body, conn} = read_body(conn)
     msg = parse_xml(body)
     assign(conn, :msg, msg)
