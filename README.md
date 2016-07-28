@@ -33,7 +33,7 @@ Add config in `config.exs`:
     token: "wechat token"
   ```
 
-## Usage
+## API Usage
 
 ```
 > iex -S mix
@@ -60,45 +60,56 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
 %{errcode: 40007, errmsg: "invalid media_id hint: [uJTJra0597e297]"}
 ```
 
-## Use plug in Phonenix controller
-
-router.ex
-
-``` elixir
-defmodule MyApp.Router do
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
-  scope "/wechat", MyApp do
-    pipe_through :api
-
-    # validate wechat server config
-    get "/", WechatController, :index
-
-    # receive wechat push message
-    post "/", WechatController, :create
-  end
-end
-```
+## Plug usage (in Phonenix controller)
 
 * `Wechat.Plugs.CheckUrlSignature`
 
-  Automatically check url signature
+  Check url signature
 
   Reference [接入指南](http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319&token=&lang=zh_CN)
+
+* `Wechat.Plugs.CheckMsgSignature`
+
+  Parse xml message (encrypted msg not supported at the moment)
+
+* router.ex
+
+    ``` elixir
+    defmodule MyApp.Router do
+      pipeline :api do
+        plug :accepts, ["json"]
+      end
+
+      scope "/wechat", MyApp do
+        pipe_through :api
+
+        # validate wechat server config
+        get "/", WechatController, :index
+
+        # receive wechat push message
+        post "/", WechatController, :create
+      end
+    end
+    ```
+
+* WechatController
 
     ``` elixir
     defmodule MyApp.WechatController do
       use MyApp.Web, :controller
 
       plug Wechat.Plugs.CheckUrlSignature
+      plug Wechat.Plugs.CheckMsgSignature, only: [:create]
 
       def index(conn, %{"echostr" => echostr}) do
         text conn, echostr
       end
 
       def create(conn, _params) do
+        msg = conn.assigns[:msg]
+        from = msg.fromusername
+        to = msg.tousername
+        content = msg.content
         ...
       end
     end
