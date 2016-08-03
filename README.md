@@ -101,7 +101,7 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
       use MyApp.Web, :controller
 
       plug Wechat.Plugs.CheckUrlSignature
-      plug Wechat.Plugs.CheckMsgSignature, only: [:create]
+      plug Wechat.Plugs.CheckMsgSignature when action in [:create]
 
       def index(conn, %{"echostr" => echostr}) do
         text conn, echostr
