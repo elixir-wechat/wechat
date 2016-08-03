@@ -7,7 +7,8 @@ defmodule Wechat.Plugs.CheckUrlSignature do
   import Wechat.Signature
 
   def init(opts) do
-    Keyword.merge(opts, token: Wechat.config[:token])
+    Keyword.merge opts,
+      token: Wechat.config[:token]
   end
 
   def call(conn = %Plug.Conn{params: params}, [token: token]) do
