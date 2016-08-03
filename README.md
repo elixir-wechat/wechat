@@ -32,7 +32,8 @@ Add config in `config.exs`:
   config :wechat, Wechat,
     appid: "wechat app id",
     secret: "wechat app secret",
-    token: "wechat token"
+    token: "wechat token",
+    encoding_aes_key: "32bits key" # 只有"兼容模式"和"安全模式"才需要配置这个值
   ```
 
 ## API Usage
