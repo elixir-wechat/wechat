@@ -32,12 +32,13 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   end
 
   defp decrypt_msg(conn, %{encrypt: msg_encrypt} = msg, opts) do
+    appid = Keyword.fetch!(opts, :appid)
     token = Keyword.fetch!(opts, :token)
     aes_key = Keyword.fetch!(opts, :aes_key)
     case msg_valid?(msg_encrypt, conn.params, token) do
       true ->
         case decrypt(msg_encrypt, aes_key) do
-          {appid, msg_decrypt} ->
+          {^appid, msg_decrypt} ->
             conn
             |> assign(:msg, msg_decrypt |> parse)
           _ ->
