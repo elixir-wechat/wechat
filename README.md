@@ -24,7 +24,7 @@ Wechat API wrapper in Elixir.
 
 ## Config
 
-Add config in `config.exs`:
+* Add config in `config.exs`
 
     ```elixir
     config :wechat, Wechat,
@@ -34,32 +34,40 @@ Add config in `config.exs`:
       encoding_aes_key: "32bits key" # 只有"兼容模式"和"安全模式"才需要配置这个值
     ```
 
-## API Usage
+## Usage
 
-```
-> iex -S mix
+* access_token
 
-iex> Wechat.access_token
+    ```elixir
+    iex> Wechat.access_token
 "Bgw6_cMvFrE3hY3J8U6oglhvlzHhMpAQma0Wjam4XsLx8F6XP4pfZzsezBdpfth2BNAdUK6wA23S7D3fSePt7meG9a1gf9LhEmXjxGelnTjJLaIQMYumrCHE_9gcFVXaHIHcAGACDC"
+    ```
 
-iex> Wechat.User.list
-%{count: 4,
-  data: %{openid: ["oi00OuFrmNEC-QMa0Kikycq6A7ys",
+* user
+
+    ```elixir
+    iex> Wechat.User.list
+    %{count: 4,
+    data: %{openid: ["oi00OuFrmNEC-QMa0Kikycq6A7ys",
      "oi00OuKAhA8bm5okpaIDs7WmUZr4", "oi00OuOdjK0TicVUmovudbSP5Zq4",
      "oi00OuBgG2mko_pOukCy00EYCwo4"]},
-  next_openid: "oi00OuBgG2mko_pOukCy00EYCwo4", total: 4}
+    next_openid: "oi00OuBgG2mko_pOukCy00EYCwo4", total: 4}
 
-iex> Wechat.User.info("oi00OuKAhA8bm5okpaIDs7WmUZr4")
-%{city: "宝山", country: "中国", groupid: 0,
-  headimgurl: "http://wx.qlogo.cn/mmopen/7raJSSs9gLVJibia6sAXRvr8jajXfQFWiagrLwrRIZjMHCEXOxYf6nflxcpl4WkT7gz8Sa4tO32avnI0dlNLn24yA/0",
-  language: "zh_CN", nickname: "小爆炸的爸爸",
-  openid: "oi00OuKAhA8bm5okpaIDs7WmUZr4", province: "上海", remark: "",
-  sex: 1, subscribe: 1, subscribe_time: 1449812483, tagid_list: [],
-  unionid: "o2oUsuOUzgNL-JSLtIp8b3FzkI-M"}
+    iex> Wechat.User.info("oi00OuKAhA8bm5okpaIDs7WmUZr4")
+    %{city: "宝山", country: "中国", groupid: 0,
+    headimgurl: "http://wx.qlogo.cn/mmopen/7raJSSs9gLVJibia6sAXRvr8jajXfQFWiagrLwrRIZjMHCEXOxYf6nflxcpl4WkT7gz8Sa4tO32avnI0dlNLn24yA/0",
+    language: "zh_CN", nickname: "小爆炸的爸爸",
+    openid: "oi00OuKAhA8bm5okpaIDs7WmUZr4", province: "上海", remark: "",
+    sex: 1, subscribe: 1, subscribe_time: 1449812483, tagid_list: [],
+    unionid: "o2oUsuOUzgNL-JSLtIp8b3FzkI-M"}
+    ```
 
-iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-xm8hX3nPWCA")
-%{errcode: 40007, errmsg: "invalid media_id hint: [uJTJra0597e297]"}
-```
+* media
+
+    ```
+    iex> file = Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-xm8hX3nPWCA")
+   iex> File.write!('/tmp/file', file)
+    ```
 
 ## Plug
 
