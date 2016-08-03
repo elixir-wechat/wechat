@@ -73,7 +73,7 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
 
 * `Wechat.Plugs.CheckMsgSignature`
 
-  Parse xml message (encrypted msg not supported at the moment)
+  Parse xml message (support decrypt msg)
 
 * router.ex
 
