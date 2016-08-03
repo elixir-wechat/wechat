@@ -4,6 +4,7 @@ defmodule Wechat.Plugs.CheckUrlSignature do
   """
 
   import Plug.Conn
+  import Wechat.Signature
 
   def init(opts) do
     Keyword.merge(opts, token: Wechat.config[:token])
@@ -12,7 +13,7 @@ defmodule Wechat.Plugs.CheckUrlSignature do
   def call(conn = %Plug.Conn{params: params}, [token: token]) do
     %{"timestamp" => timestamp, "nonce" => nonce,
       "signature" => signature} = params
-    my_signature = sign [token, timestamp, nonce]
+    my_signature = [token, timestamp, nonce] |> sign
     case my_signature == signature do
       true ->
         conn
@@ -21,17 +22,5 @@ defmodule Wechat.Plugs.CheckUrlSignature do
         |> send_resp(400, "")
         |> halt
     end
-  end
-
-  defp sign(args) do
-    args
-    |> Enum.sort
-    |> Enum.join
-    |> sha1
-  end
-
-  defp sha1(str) do
-    :crypto.hash(:sha, str)
-    |> Base.encode16(case: :lower)
   end
 end
