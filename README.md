@@ -6,9 +6,7 @@ Wechat API wrapper in Elixir.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `wechat` to your list of dependencies in `mix.exs`:
+1. Add `wechat` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
@@ -16,7 +14,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
 
-  2. Ensure `wechat` is started before your application:
+2. Ensure `wechat` is started before your application:
 
     ```elixir
     def application do
@@ -28,13 +26,13 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 Add config in `config.exs`:
 
-  ```
-  config :wechat, Wechat,
-    appid: "wechat app id",
-    secret: "wechat app secret",
-    token: "wechat token",
-    encoding_aes_key: "32bits key" # 只有"兼容模式"和"安全模式"才需要配置这个值
-  ```
+    ```elixir
+    config :wechat, Wechat,
+      appid: "wechat app id",
+      secret: "wechat app secret",
+      token: "wechat token",
+      encoding_aes_key: "32bits key" # 只有"兼容模式"和"安全模式"才需要配置这个值
+    ```
 
 ## API Usage
 
@@ -63,21 +61,23 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
 %{errcode: 40007, errmsg: "invalid media_id hint: [uJTJra0597e297]"}
 ```
 
-## Plug usage (in Phonenix controller)
+## Plug
 
 * `Wechat.Plugs.CheckUrlSignature`
 
-  Check url signature
-
-  Reference [接入指南](http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319&token=&lang=zh_CN)
+  * Check url signature
+  * [接入指南](http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319&token=&lang=zh_CN)
 
 * `Wechat.Plugs.CheckMsgSignature`
 
-  Parse xml message (support decrypt msg)
+  * Parse xml message (support decrypt msg)
+  * [消息加密解密技术方案](http://mp.weixin.qq.com/wiki/2/3478f69c0d0bbe8deb48d66a3111ff6e.html)
+
+## Plug Usage (in Phonenix controller)
 
 * router.ex
 
-    ``` elixir
+    ```elixir
     defmodule MyApp.Router do
       pipeline :api do
         plug :accepts, ["json"]
@@ -95,9 +95,9 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
     end
     ```
 
-* WechatController
+* wechat_controller.ex
 
-    ``` elixir
+    ```elixir
     defmodule MyApp.WechatController do
       use MyApp.Web, :controller
 
@@ -110,10 +110,24 @@ iex> Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-x
 
       def create(conn, _params) do
         msg = conn.assigns[:msg]
-        from = msg.fromusername
-        to = msg.tousername
-        content = msg.content
-        ...
+        reply = build_text_reply(msg, msg.content)
+        render conn, "text.xml", reply: reply
+      end
+
+      defp build_text_reply(%{tousername: to, fromusername: from}, content) do
+        %{from: to, to: from, content: content}
       end
     end
+    ```
+
+* text.xml.eex
+
+    ```xml
+    <xml>
+      <MsgType><![CDATA[text]]></MsgType>
+      <Content><![CDATA[<%= @reply.content %>]]></Content>
+      <ToUserName><![CDATA[<%= @reply.to %>]]></ToUserName>
+      <FromUserName><![CDATA[<%= @reply.from %>]]></FromUserName>
+      <CreateTime><%= DateTime.to_unix(DateTime.utc_now) %></CreateTime>
+    </xml>
     ```
