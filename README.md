@@ -64,7 +64,7 @@ Wechat API wrapper in Elixir.
 
 * media
 
-    ```
+    ```elixir
     iex> file = Wechat.Media.download("GuSq91L0FXQFOIFtKwX2i5UPXH9QKnnu63_z4JHZwIw3TMIn1C-xm8hX3nPWCA")
    iex> File.write!('/tmp/file', file)
     ```
