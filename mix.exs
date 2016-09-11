@@ -3,7 +3,7 @@ defmodule Wechat.Mixfile do
 
   def project do
     [app: :wechat,
-     version: "0.1.2",
+     version: "0.1.3",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -47,7 +47,7 @@ defmodule Wechat.Mixfile do
       name: :wechat,
       licenses: ["MIT"],
       maintainers: ["goofansu"],
-      links: %{"Github" => "https://github.com/goofansu/wechat_elixir"}
+      links: %{"Github" => "https://github.com/goofansu/wechat-elixir"}
     ]
   end
 end
