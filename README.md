@@ -8,7 +8,7 @@ Wechat API wrapper in Elixir.
 
     ```elixir
     def deps do
-      [{:wechat, "~> 0.1.0"}]
+      [{:wechat, "~> 0.2.0"}]
     end
     ```
 
