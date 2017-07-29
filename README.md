@@ -4,21 +4,11 @@ Wechat API wrapper in Elixir.
 
 ## Installation
 
-1. Add `wechat` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:wechat, "~> 0.2.0"}]
-    end
-    ```
-
-2. Ensure `wechat` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:wechat]]
-    end
-    ```
+  ```elixir
+  def deps do
+    [{:wechat, "~> 0.2.0"}]
+  end
+  ```
 
 ## Config
 
