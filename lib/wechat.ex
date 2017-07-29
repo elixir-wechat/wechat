@@ -1,43 +1,35 @@
 defmodule Wechat do
-  @moduledoc """
-  Assemble config and provide access to access_token.
-  """
+  @moduledoc false
+
+  alias Wechat.Workers.AccessToken
+  alias Wechat.Workers.JSAPITicket
 
   def config do
-    default_config
-    |> Keyword.merge(Application.get_env(:wechat, Wechat, []))
+    Keyword.merge(default_config(), Application.get_env(:wechat, Wechat))
+  end
+
+  def appid do
+    config()[:appid] |> get_env
+  end
+
+  def secret do
+    config()[:secret] |> get_env
   end
 
   defp default_config do
-    [token_file: "/tmp/access_token"]
+    [
+      api_host: "https://api.weixin.qq.com/cgi-bin",
+      mp_host: "https://mp.weixin.qq.com/cgi-bin"
+    ]
   end
 
-  def access_token do
-    token_info = read_token_from_file
-    token_info =
-      case access_token_expired?(token_info) do
-        true -> refresh_access_token
-        false -> token_info
-      end
-    token_info.access_token
+  defp get_env({:system, env_var}) do
+    System.get_env(env_var)
+  end
+  defp get_env(val) do
+    val
   end
 
-  defp read_token_from_file do
-    case File.read(config[:token_file]) do
-      {:ok, binary} -> Poison.decode!(binary, keys: :atoms)
-      {:error, _reason} -> refresh_access_token
-    end
-  end
-
-  defp refresh_access_token do
-    now = DateTime.to_unix(DateTime.utc_now)
-    token_info = Map.merge(Wechat.AccessToken.token, %{refreshed_at: now})
-    File.write(config[:token_file], Poison.encode!(token_info))
-    token_info
-  end
-
-  defp access_token_expired?(token_info) do
-    now = DateTime.utc_now |> DateTime.to_unix
-    now >= (token_info.refreshed_at + token_info.expires_in)
-  end
+  defdelegate access_token, to: AccessToken, as: :get
+  defdelegate jsapi_ticket, to: JSAPITicket, as: :get
 end

@@ -46,7 +46,7 @@ Wechat API wrapper in Elixir.
 * user
 
     ```elixir
-    iex> Wechat.User.list
+    iex> Wechat.User.get
     %{count: 4,
     data: %{openid: ["oi00OuFrmNEC-QMa0Kikycq6A7ys",
      "oi00OuKAhA8bm5okpaIDs7WmUZr4", "oi00OuOdjK0TicVUmovudbSP5Zq4",
