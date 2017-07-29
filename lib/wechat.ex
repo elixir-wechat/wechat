@@ -16,6 +16,14 @@ defmodule Wechat do
     config()[:secret] |> get_env
   end
 
+  def token do
+    config()[:token] |> get_env
+  end
+
+  def encoding_aes_key do
+    config()[:encoding_aes_key] |> get_env
+  end
+
   defp default_config do
     [
       api_host: "https://api.weixin.qq.com/cgi-bin",

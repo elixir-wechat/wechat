@@ -10,9 +10,9 @@ defmodule Wechat.Plugs.CheckMsgSignature do
 
   def init(opts) do
     Keyword.merge opts,
-      token: Wechat.config[:token],
-      appid: Wechat.config[:appid],
-      aes_key: aes_key(Wechat.config[:encoding_aes_key])
+      appid: Wechat.appid,
+      token: Wechat.token,
+      aes_key: aes_key(Wechat.encoding_aes_key)
   end
 
   defp aes_key(nil) do
