@@ -2,12 +2,16 @@ defmodule Wechat.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :wechat,
-     version: "0.1.1",
-     elixir: "~> 1.5",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :wechat,
+      version: "0.1.1",
+      elixir: "~> 1.5",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+      description: description(),
+      package: package()
+    ]
   end
 
   # Configuration for the OTP application
@@ -36,6 +40,21 @@ defmodule Wechat.Mixfile do
       {:poison, "~> 3.1"},
       {:floki, "~> 0.17.0"},
       {:plug, "~> 1.0"}
+    ]
+  end
+
+  defp description do
+    """
+    Wechat API wrapper in Elixir.
+    """
+  end
+
+  defp package do
+    [
+      name: :wechat,
+      licenses: ["MIT"],
+      maintainers: ["goofansu"],
+      links: %{"Github" => "https://github.com/goofansu/wechat-elixir"}
     ]
   end
 end
