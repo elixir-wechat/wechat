@@ -1,5 +1,5 @@
 defmodule Wechat.Message.Custom do
-  @modueldoc """
+  @moduledoc """
   Custom Message API.
 
   ref: http://mp.weixin.qq.com/wiki/11/c88c270ae8935291626538f9c64bd123.html#.E5.AE.A2.E6.9C.8D.E6.8E.A5.E5.8F.A3-.E5.8F.91.E6.B6.88.E6.81.AF
