@@ -6,7 +6,7 @@ defmodule Wechat.HTTP do
       use HTTPoison.Base
 
       def process_url(url) do
-        unquote(opts)[:host] <> url
+        Path.join(unquote(opts)[:host], url)
       end
 
       def process_response_body(body) do
