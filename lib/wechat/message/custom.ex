@@ -6,7 +6,7 @@ defmodule Wechat.Message.Custom do
   """
   alias Wechat.API
 
-  @api_path "message/custom/send"
+  @api_path "/message/custom/send"
   @types ~w(text image voice video music news mpnews wxcard)
 
   def send_text(openid, content) do

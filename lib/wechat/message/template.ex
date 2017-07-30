@@ -7,7 +7,7 @@ defmodule Wechat.Message.Template do
 
   alias Wechat.API
 
-  @api_path "message/template/send"
+  @api_path "/message/template/send"
 
   def send(openid, template_id, url, data) do
     body = %{
