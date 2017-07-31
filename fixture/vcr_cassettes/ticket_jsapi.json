@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=wuyO1utF9tdu-dHT3Npnj3iRqaXNBgYD9R4jPD9C_5g77wBEzjhCTH-laCBfTS6cD3wpVuM290HM6wr0bhhfiBmrq541Y9pYK_vcCOllWwQALJfAGALWU&type=jsapi"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\",\"ticket\":\"sM4AOVdWfPE4DxkXGEs8VCdT_ZNcLoZWDBSBEduHE1Vj6V-eB-fnpWJCYyOHXnwcXcBgp5sJfgka1vddm6kHFw\",\"expires_in\":7200}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Mon, 31 Jul 2017 06:57:30 GMT",
+        "Content-Length": "143"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

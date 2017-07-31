@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{\"touser\":\"oi00OuKAhA8bm5okpaIDs7WmUZr4\",\"text\":{\"content\":\"hello from wechat-elixir\"},\"msgtype\":\"text\"}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=F2NaQM2ac5JlVOi7Qt3b-ICZwpAr-riCbYiegDNV4eR8kykbBMKyDGezSQvADm124n9UXJx-xFwowUv-vqdOcd0uJ1keZ2-pzNWXfdNIIu0NgBsDDQKcEPBpjBrYHycYQUJcAGAIMB"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Mon, 31 Jul 2017 06:40:14 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

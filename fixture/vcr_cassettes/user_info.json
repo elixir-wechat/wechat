@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ZvkBQ3yM55HzaOKevk_vJ57z2l53diKnjj-cflfbFLkrNYA2Uj4dsqntYJNLbCzumLpkjJnvy6ZmZr4mCwsYBZqq8xb8Mb2w4vv4gADORXQEc9w1sjwme1hKSrhU-zz2PDGfAHACQT&lang=zh_CN&openid=oi00OuKAhA8bm5okpaIDs7WmUZr4"
+    },
+    "response": {
+      "body": "{\"subscribe\":1,\"openid\":\"oi00OuKAhA8bm5okpaIDs7WmUZr4\",\"nickname\":\"yejun.su\",\"sex\":1,\"language\":\"zh_CN\",\"city\":\"宝山\",\"province\":\"上海\",\"country\":\"中国\",\"headimgurl\":\"http:\\/\\/wx.qlogo.cn\\/mmopen\\/PiajxSqBRaEKLmDXps9ScRibcsZ4YRoD3TXjsc2yjhduSYhNYgRBlxrMhJu7GMyWOZhjUh9Y3ZXJfjqptTh2GAibw\\/0\",\"subscribe_time\":1473842007,\"unionid\":\"o2oUsuOUzgNL-JSLtIp8b3FzkI-M\",\"remark\":\"say\",\"groupid\":2,\"tagid_list\":[2,100]}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Mon, 31 Jul 2017 06:35:09 GMT",
+        "Content-Length": "414"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
