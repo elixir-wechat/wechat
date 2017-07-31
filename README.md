@@ -7,9 +7,19 @@ Wechat API wrapper in Elixir.
 
 ## Installation
 
+### stable
+
   ```elixir
   def deps do
     [{:wechat, "~> 0.2.0"}]
+  end
+  ```
+
+### development
+
+  ```elixir
+  def deps do
+    [{:wechat, github: "goofansu/wechat-elixir"}]
   end
   ```
 
