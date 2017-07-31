@@ -22,7 +22,7 @@ defmodule Wechat.Cipher do
 
   defp decrypt_aes(aes_encrypt, aes_key) do
     iv = binary_part(aes_key, 0, 16)
-    :crypto.block_decrypt(:aes_cbc128, aes_key, iv, aes_encrypt)
+    :crypto.block_decrypt(:aes_cbc, aes_key, iv, aes_encrypt)
   end
 
   defp decode_padding(padded_text) do
