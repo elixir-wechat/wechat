@@ -11,9 +11,10 @@ defmodule Wechat.Plugs.CheckUrlSignature do
       token: Wechat.token
   end
 
-  def call(conn = %Plug.Conn{params: params}, [token: token]) do
-    %{"timestamp" => timestamp, "nonce" => nonce,
-      "signature" => signature} = params
+  def call(conn = %Plug.Conn{
+      params: %{"timestamp" => timestamp, "nonce" => nonce, "signature" => signature}
+    }, [token: token]) do
+
     my_signature = [token, timestamp, nonce] |> sign
     case my_signature == signature do
       true ->
@@ -24,4 +25,10 @@ defmodule Wechat.Plugs.CheckUrlSignature do
         |> halt
     end
   end
+
+
+  def call(conn, _) do
+    conn
+  end
+
 end
