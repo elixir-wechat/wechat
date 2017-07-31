@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/goofansu/wechat-elixir/tree/HEAD)
+
+[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.3...HEAD)
+
+**Merged pull requests:**
+
+- bugfix: fix wrong API url [\#5](https://github.com/goofansu/wechat-elixir/pull/5) ([qhwa](https://github.com/qhwa))
+
 ## [v0.1.3](https://github.com/goofansu/wechat-elixir/tree/v0.1.3) (2016-09-11)
 [Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.2...v0.1.3)
 
