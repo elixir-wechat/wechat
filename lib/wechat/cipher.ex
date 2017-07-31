@@ -30,7 +30,7 @@ defmodule Wechat.Cipher do
     <<pad :: utf8>> = binary_part(padded_text, len, -1)
     case pad < 1 or pad > 32 do
       true -> binary_part(padded_text, 0, len)
-      false -> binary_part(padded_text, 0, len-pad)
+      false -> binary_part(padded_text, 0, len - pad)
     end
   end
 end

@@ -11,7 +11,7 @@ defmodule Wechat.Signature do
   end
 
   defp sha1(str) do
-    :crypto.hash(:sha, str)
-    |> Base.encode16(case: :lower)
+    digest = :crypto.hash(:sha, str)
+    Base.encode16(digest, case: :lower)
   end
 end
