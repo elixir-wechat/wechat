@@ -14,3 +14,6 @@ before_script:
 
 script:
   - mix test
+
+after_script:
+  - MIX_ENV=test mix coveralls.travis

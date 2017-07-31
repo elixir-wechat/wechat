@@ -11,8 +11,10 @@ defmodule Wechat.Mixfile do
       deps: deps(),
       description: description(),
       package: package(),
+      test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test
+        vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test,
+        coveralls: :test
       ]
     ]
   end
@@ -41,6 +43,7 @@ defmodule Wechat.Mixfile do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:exvcr, "~> 0.8", only: :test},
+      {:excoveralls, "~> 0.7", only: :test},
       {:credo, "~> 0.3", only: [:dev, :test]},
       {:cortex, "~> 0.1", only: [:dev, :test]},
       {:httpoison, "~> 0.12"},
