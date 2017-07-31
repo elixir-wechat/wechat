@@ -15,5 +15,8 @@ matrix:
     - otp_release: 18.3
       elixir: 1.4.5
 
-script:
+before_script:
   - mix deps.get --only test
+
+script:
+  - mix test
