@@ -4,6 +4,7 @@ Wechat API wrapper in Elixir.
 
 [![Build Status](https://travis-ci.org/goofansu/wechat-elixir.svg?branch=master)](https://travis-ci.org/goofansu/wechat-elixir)
 [![codebeat badge](https://codebeat.co/badges/60f20da5-c961-4100-a19e-135ad79c8457)](https://codebeat.co/projects/github-com-goofansu-wechat-elixir-master)
+[![Coverage Status](https://coveralls.io/repos/github/goofansu/wechat-elixir/badge.svg)](https://coveralls.io/github/goofansu/wechat-elixir)
 
 ## Installation
 
