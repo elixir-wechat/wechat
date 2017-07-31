@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{:multipart, [file: \"/Users/suyejun/git/wechat-elixir/fixture/media_assets/elixir.png\"]}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=UUKSPOELV7XdQ7J6IeLxD8aEd2mpxrm-vZ9vdS144WXAGkbpVh0iDyO2hVZ0Ct3_aCZhhF9oOlktWgH4YJsxkVE_wuxK8hzg5dhoD4isPcXDVA00MwmYIVjd3sSdmgseVEQaAEABKW&type=image"
+    },
+    "response": {
+      "body": "{\"type\":\"image\",\"media_id\":\"QkoSIgjW4NsoLJkEFvmXgX1Yi4v_U1mr2l5xS-Q_NRVpR8PujYLyqdAEvOWi8Ywx\",\"created_at\":1501487119}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "text/plain",
+        "Date": "Mon, 31 Jul 2017 07:45:19 GMT",
+        "Content-Length": "118"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
