@@ -4,9 +4,9 @@ defmodule Wechat.Plugs.CheckMsgSignature do
   """
 
   import Plug.Conn
-  import Wechat.MsgParser
-  import Wechat.Signature
-  import Wechat.Cipher
+  import Wechat.Utils.MsgParser
+  import Wechat.Utils.Signature
+  import Wechat.Utils.Cipher
 
   def init(opts) do
     Keyword.merge opts,

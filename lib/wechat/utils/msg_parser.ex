@@ -1,4 +1,4 @@
-defmodule Wechat.MsgParser do
+defmodule Wechat.Utils.MsgParser do
   @moduledoc """
   Parse wechat xml message.
   Generate a map structured message with plain xml.

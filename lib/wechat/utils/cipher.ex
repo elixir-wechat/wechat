@@ -1,4 +1,4 @@
-defmodule Wechat.Cipher do
+defmodule Wechat.Utils.Cipher do
   @moduledoc """
   Decrypt wechat msg.
   """

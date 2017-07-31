@@ -1,4 +1,4 @@
-defmodule Wechat.Signature do
+defmodule Wechat.Utils.Signature do
   @moduledoc """
   Generate signature.
   """

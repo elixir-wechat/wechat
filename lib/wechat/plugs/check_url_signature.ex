@@ -4,7 +4,7 @@ defmodule Wechat.Plugs.CheckUrlSignature do
   """
 
   import Plug.Conn
-  import Wechat.Signature
+  import Wechat.Utils.Signature
 
   def init(opts) do
     Keyword.merge opts,
