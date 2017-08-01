@@ -7,6 +7,7 @@ defmodule Wechat.Workers.AccessToken do
 
   @name __MODULE__
   @refresh_interval :timer.minutes(30)
+  @default_fetcher {API, :access_token, []}
 
   def start_link(args) do
     GenServer.start_link(__MODULE__, args, name: @name)
@@ -28,7 +29,12 @@ defmodule Wechat.Workers.AccessToken do
 
   defp do_refresh do
     Process.send_after(self(), :refresh, @refresh_interval)
-    API.access_token
+
+    {mod, f, args} = :wechat
+    |> Application.get_env(Wechat)
+    |> Keyword.get(:access_token_fetcher, @default_fetcher)
+
+    apply(mod, f, args)
   end
 
   def get do
