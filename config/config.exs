@@ -34,5 +34,12 @@ config :wechat, Wechat,
   token: {:system, "WECHAT_TOKEN"},
   encoding_aes_key: {:system, "WECHAT_AES_KEY"}
 
-config :wechat, Wechat,
-  access_token_fetcher: {Wechat.API, :access_token, []}
+# To define your own method to fetch the access token, you can provide
+# a `access_token_fetcher` here. This is useful when you are sharing
+# access_token among multiple applications and you pull access_token
+# from a center storage or other service.
+#
+# The syntax is: {Module, method, [args]}
+#
+#     config :wechat, Wechat,
+#       access_token_fetcher: {Wechat.API, :access_token, []}
