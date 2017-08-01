@@ -33,3 +33,6 @@ config :wechat, Wechat,
   secret: {:system, "WECHAT_SECRET"},
   token: {:system, "WECHAT_TOKEN"},
   encoding_aes_key: {:system, "WECHAT_AES_KEY"}
+
+config :wechat, Wechat,
+  access_token_fetcher: {Wechat.API, :access_token, []}
