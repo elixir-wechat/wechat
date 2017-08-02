@@ -42,4 +42,7 @@ config :wechat, Wechat,
 # The syntax is: {Module, method, [args]}
 #
 #     config :wechat, Wechat,
-#       access_token_fetcher: {Wechat.API, :access_token, []}
+#       access_token_fetcher: {Wechat.API, :access_token, []},
+#
+#       # set refresh interval
+#       access_token_refresh_interval: :timer.minutes(30)
