@@ -28,17 +28,17 @@ defmodule Wechat.Workers.AccessToken do
   end
 
   defp do_refresh do
-    Process.send_after(self(), :refresh, refresh_interval)
+    Process.send_after(self(), :refresh, refresh_interval())
 
     {mod, f, args} = env(:access_token_fetcher, @default_fetcher)
     apply(mod, f, args)
   end
 
-  defp refresh_interval do
+  def refresh_interval do
     env(:access_token_refresh_interval, @default_refresh_interval)
   end
 
-  defp env(key, default \\ nil) do
+  defp env(key, default) do
     :wechat
     |> Application.get_env(Wechat)
     |> Keyword.get(key, default)
