@@ -1,5 +1,18 @@
 defmodule Wechat.HTTP do
-  @moduledoc false
+  @moduledoc """
+  Provides a wrapper layer for HTTPoison.
+  This module is meant to be `use`'d in custom modules.
+
+      defmodule HTTPBin do
+        use Wechat.HTTP, host: "https://httpbin.org/"
+        def test_get do
+          get "/get"
+        end
+        def test_post do
+          post "/post", %{foo: :bar}
+        end
+      end
+  """
 
   use HTTPoison.Base
 
