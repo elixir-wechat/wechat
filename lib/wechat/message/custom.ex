@@ -101,7 +101,7 @@ defmodule Wechat.Message.Custom do
     deliver(openid, message)
   end
 
-  def send_mini_program_app_page(openid, content) do
+  def send_mini_program_page(openid, content) do
     message = build_message("miniprogrampage", content)
     deliver(openid, message)
   end

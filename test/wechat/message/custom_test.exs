@@ -32,8 +32,8 @@ defmodule Wechat.Message.CustomTest do
   end
 
   test "send weapp page", %{openid: openid} do
-    use_cassette "send_mini_program_app_page" do
-      result = Custom.send_mini_program_app_page(openid, %{
+    use_cassette "send_mini_program_page" do
+      result = Custom.send_mini_program_page(openid, %{
         title: "my mini program app",
         pagepath: "/pages/index?id=1",
         thumb_media_id: "111"
