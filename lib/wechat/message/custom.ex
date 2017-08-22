@@ -7,7 +7,7 @@ defmodule Wechat.Message.Custom do
   alias Wechat.API
 
   @api_path "/message/custom/send"
-  @types ~w(text image voice video music news mpnews wxcard)
+  @types ~w(text image voice video music news mpnews wxcard link miniprogrampage)
 
   def send_text(openid, content) do
     message =
@@ -91,6 +91,18 @@ defmodule Wechat.Message.Custom do
                        "card_ext" => card_ext
                      })
 
+    deliver(openid, message)
+  end
+
+  # REF: 
+  # https://mp.weixin.qq.com/debug/wxadoc/dev/api/custommsg/conversation.html
+  def send_link(openid, content) do
+    message = build_message("link", content)
+    deliver(openid, message)
+  end
+
+  def send_mini_program_app_page(openid, content) do
+    message = build_message("miniprogrampage", content)
     deliver(openid, message)
   end
 
