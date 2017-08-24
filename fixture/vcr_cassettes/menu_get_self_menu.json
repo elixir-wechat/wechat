@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=_Ae2u_W4h2lamb2cTwuIyjvmBx_h2oTK2Rloz2df3LG5Tq3P0hfyftCcirVDPzhqt0ot0La5kuJJ-GSqXyVz6Yd8R3419ZFO5QifmMZK8f_3i29TlH4zxdQOA_IXxIP_XZUfAIASUP"
+    },
+    "response": {
+      "body": "{\"is_menu_open\":1,\"selfmenu_info\":{\"button\":[{\"type\":\"click\",\"name\":\"今日歌曲\",\"key\":\"V1001_TODAY_MUSIC\"},{\"name\":\"菜单\",\"sub_button\":{\"list\":[{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http:\\/\\/www.soso.com\\/\"},{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}]}}]}}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Thu, 24 Aug 2017 14:42:29 GMT",
+        "Content-Length": "279"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

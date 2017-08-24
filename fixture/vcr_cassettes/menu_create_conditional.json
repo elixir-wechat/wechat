@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{\"matchrule\":{\"tag_id\":\"2\",\"sex\":\"1\",\"province\":\"广东\",\"language\":\"zh_CN\",\"country\":\"中国\",\"client_platform_type\":\"2\",\"city\":\"广州\"},\"button\":[{\"type\":\"click\",\"name\":\"今日歌曲\",\"key\":\"V1001_TODAY_MUSIC\"},{\"sub_button\":[{\"url\":\"http://www.soso.com/\",\"type\":\"view\",\"name\":\"搜索\"},{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}],\"name\":\"菜单\"}]}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=T7hfywEWkRRcc48SVSnctX88L2ahiKdgF2FZn-kcLjKH7dcYN0mGD0x0OJr9yI0krmgMl0IaI2mhgJ1EjwEeZD_1wBB2D1CQ81gONvreUf_OBAW5-njWTcGYkc_zFBdnOQYdAGARTB"
+    },
+    "response": {
+      "body": "{\"menuid\":498512099}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Thu, 24 Aug 2017 14:35:21 GMT",
+        "Content-Length": "20"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
