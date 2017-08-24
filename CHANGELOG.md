@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/goofansu/wechat-elixir/tree/HEAD)
-
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.3...HEAD)
+## [v0.2.3](https://github.com/goofansu/wechat-elixir/tree/v0.2.3) (2017-08-24)
+[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.3...v0.2.3)
 
 **Merged pull requests:**
 
