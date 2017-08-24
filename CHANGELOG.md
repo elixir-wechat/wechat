@@ -6,6 +6,11 @@
 
 **Merged pull requests:**
 
+- Add menu support [\#11](https://github.com/goofansu/wechat-elixir/pull/11) ([1ternal](https://github.com/1ternal))
+- improve naming [\#10](https://github.com/goofansu/wechat-elixir/pull/10) ([qhwa](https://github.com/qhwa))
+- more custom message types supported [\#9](https://github.com/goofansu/wechat-elixir/pull/9) ([qhwa](https://github.com/qhwa))
+- Custom refresh interval [\#8](https://github.com/goofansu/wechat-elixir/pull/8) ([qhwa](https://github.com/qhwa))
+- Enable fetching access token with a custom method [\#7](https://github.com/goofansu/wechat-elixir/pull/7) ([qhwa](https://github.com/qhwa))
 - bugfix: fix wrong API url [\#5](https://github.com/goofansu/wechat-elixir/pull/5) ([qhwa](https://github.com/qhwa))
 
 ## [v0.1.3](https://github.com/goofansu/wechat-elixir/tree/v0.1.3) (2016-09-11)
