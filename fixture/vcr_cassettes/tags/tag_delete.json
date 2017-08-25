@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{\"tag\":{\"id\":12}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=amOmZf-BIbA_Jm2jWwisKp224DBXL4sJfY2zjAFQhg6ZHVqBV_x5l1oICJ33Xbl0fznAUZjA0VHQ8uV188catPle7-BMR1PKsod2S8ehcifexDwA37KjYSD9ggH61Bo7LRDdACASYK"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 06:57:43 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
