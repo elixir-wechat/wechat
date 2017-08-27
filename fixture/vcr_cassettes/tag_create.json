@@ -1,0 +1,86 @@
+[
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"awesome tag 2\"}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=gg1fKv1pq5KEG61RBlY_9IZI3SySRno20rtUaz2QnQgj9ySAscufGGVfm5xXnOru4Af5QWGkRCkltxIk-kV3GGhe_hpYCTuYSW1GiwdMOtlRRrwJsLXqdLrxRwv97TGEIOUcADAWCI"
+    },
+    "response": {
+      "body": "{\"tag\":{\"id\":115,\"name\":\"awesome tag 2\"}}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:05:48 GMT",
+        "Content-Length": "41"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"awesome tag 1\"}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=gg1fKv1pq5KEG61RBlY_9IZI3SySRno20rtUaz2QnQgj9ySAscufGGVfm5xXnOru4Af5QWGkRCkltxIk-kV3GGhe_hpYCTuYSW1GiwdMOtlRRrwJsLXqdLrxRwv97TGEIOUcADAWCI"
+    },
+    "response": {
+      "body": "{\"tag\":{\"id\":116,\"name\":\"awesome tag 1\"}}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:05:48 GMT",
+        "Content-Length": "41"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"awesome tag 3\"}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=gg1fKv1pq5KEG61RBlY_9IZI3SySRno20rtUaz2QnQgj9ySAscufGGVfm5xXnOru4Af5QWGkRCkltxIk-kV3GGhe_hpYCTuYSW1GiwdMOtlRRrwJsLXqdLrxRwv97TGEIOUcADAWCI"
+    },
+    "response": {
+      "body": "{\"tag\":{\"id\":117,\"name\":\"awesome tag 3\"}}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:05:48 GMT",
+        "Content-Length": "41"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=gg1fKv1pq5KEG61RBlY_9IZI3SySRno20rtUaz2QnQgj9ySAscufGGVfm5xXnOru4Af5QWGkRCkltxIk-kV3GGhe_hpYCTuYSW1GiwdMOtlRRrwJsLXqdLrxRwv97TGEIOUcADAWCI"
+    },
+    "response": {
+      "body": "{\"tags\":[{\"id\":2,\"name\":\"星标组\",\"count\":0},{\"id\":115,\"name\":\"awesome tag 2\",\"count\":0},{\"id\":116,\"name\":\"awesome tag 1\",\"count\":0},{\"id\":117,\"name\":\"awesome tag 3\",\"count\":0}]}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:05:48 GMT",
+        "Content-Length": "180"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

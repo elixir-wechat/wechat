@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=hJ5N_X7nSNb6ikGJGVUeG1XQ9DDUVcr_vuhGtUbi4AReCJqIv8X3jA4e-geYaLu9V7sE7NMEdyD8eMbMeVKBT9cd3Yit-Kd5AqBhJ1uVGpyiQL9uV3TyOM8ok5dyjuZWZEBiAJACHE"
+    },
+    "response": {
+      "body": "{\"tags\":[{\"id\":2,\"name\":\"星标组\",\"count\":0},{\"id\":115,\"name\":\"awesome tag 2\",\"count\":0},{\"id\":116,\"name\":\"awesome tag 1\",\"count\":0},{\"id\":117,\"name\":\"awesome tag 3\",\"count\":0}]}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:08:33 GMT",
+        "Content-Length": "180"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"new awesome tag name\",\"id\":100}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=7ocbztVhKoowYDFk_uUa92UbfBO2J6_f6EyEUpDoWQFHxBRHM1LwlS9ssVxzR_UH7-G7af3ZsxdgO2dud3DKEDe-Ve89c8IGysjq1WFnoeGPaAZwFKL8ejuYKhtBSI2KXSCfACANIS"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 06:55:50 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

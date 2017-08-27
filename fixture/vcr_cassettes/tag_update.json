@@ -1,0 +1,65 @@
+[
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"lame tag 116\",\"id\":116}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=8iBxxYOXuYUNQl39IOrgwsH2N6GKD-qf3A3EX6eCK-FdX0mnx4PdeoU4WdH3scoWY4CRFXAis09mov4BKNkFBWT95R9jyrbZUob-6Cuel2Ts3CzyHEEfMVSt3yw7n1neLGTfABAHCP"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:13:34 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"lame tag 115\",\"id\":115}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=8iBxxYOXuYUNQl39IOrgwsH2N6GKD-qf3A3EX6eCK-FdX0mnx4PdeoU4WdH3scoWY4CRFXAis09mov4BKNkFBWT95R9jyrbZUob-6Cuel2Ts3CzyHEEfMVSt3yw7n1neLGTfABAHCP"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:13:34 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "{\"tag\":{\"name\":\"lame tag 117\",\"id\":117}}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/update?access_token=8iBxxYOXuYUNQl39IOrgwsH2N6GKD-qf3A3EX6eCK-FdX0mnx4PdeoU4WdH3scoWY4CRFXAis09mov4BKNkFBWT95R9jyrbZUob-6Cuel2Ts3CzyHEEfMVSt3yw7n1neLGTfABAHCP"
+    },
+    "response": {
+      "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 09:13:34 GMT",
+        "Content-Length": "27"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

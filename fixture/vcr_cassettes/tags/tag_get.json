@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=zG2dzf0mSUwkwDEZvKsB4w7eT34AwzUwBzlLtDkV0HCjAvYXDqtMXMR168jWP1Ae272tPjyG1gwd0U0-yOV5uD0Gv4dqmI58Kf3pu6rW0uQtEyU7Phxjw94C0hNki-XfGRUaAEAXIL"
+    },
+    "response": {
+      "body": "{\"tags\":[{\"id\":2,\"name\":\"test tag\",\"count\":0},{\"id\":100,\"name\":\"tag two\",\"count\":0}]}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Date": "Fri, 25 Aug 2017 06:48:26 GMT",
+        "Content-Length": "86"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
