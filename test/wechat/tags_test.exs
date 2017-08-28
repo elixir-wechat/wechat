@@ -55,4 +55,45 @@ defmodule Wechat.TagsTest do
       end
     end
   end
+
+  @tag_id 2
+  @open_id "oGrvrjnkVgClrO4EdP-dWbTq8LuU"
+
+  test "#get_users" do
+    use_cassette "tag_get_users" do
+      %{"count" => count, "data" => data, "next_openid" => openid} = Tags.get_users(@tag_id)
+
+      assert is_integer(count)
+      assert is_list(data["openid"])
+      assert is_binary(openid)
+    end
+  end
+
+  test "#tagging_users" do
+    use_cassette "tag_tagging_users" do
+      result = Tags.tagging_users(@tag_id, [@open_id])
+
+      assert result["errcode"] == 0
+      assert result["errmsg"]  == "ok"
+    end
+  end
+
+  test "#untagging_users" do
+    use_cassette "tag_untagging_users" do
+      result = Tags.untagging_users(@tag_id, [@open_id])
+
+      assert result["errcode"] == 0
+      assert result["errmsg"]  == "ok"
+    end
+  end
+
+  test "#get_user_tag_list" do
+    use_cassette "tag_get_user_tag_list" do
+      result = Tags.get_user_tag_list(@open_id)
+
+      tlist = result["tagid_list"]
+      assert is_list(tlist)
+      assert Enum.any?(tlist, & &1 == @tag_id)
+    end
+  end
 end
