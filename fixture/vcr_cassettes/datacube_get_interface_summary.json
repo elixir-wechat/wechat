@@ -1,0 +1,23 @@
+[
+  {
+    "request": {
+      "body": "{\"end_date\":\"2017-8-28\",\"begin_date\":\"2017-8-23\"}",
+      "headers": [],
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.weixin.qq.com/datacube/getinterfacesummary?access_token=xYd75F6XbPe47gggecUFkCaOY2ROySBUkcB_QStuZXnOY_UV6lhR2biBWXnp9Of_-hHZbQndqBfMrE3hQr0fAcPv3WclDm_AFDEN9TYwGblf3PX6gBLms1Y3IFJh-EnIXPGiABARJA"
+    },
+    "response": {
+      "body": "{\"list\":[{\"ref_date\":\"2017-08-24\",\"callback_count\":17,\"fail_count\":1,\"total_time_cost\":12248,\"max_time_cost\":1613},{\"ref_date\":\"2017-08-25\",\"callback_count\":4,\"fail_count\":0,\"total_time_cost\":4208,\"max_time_cost\":1423}]}",
+      "headers": {
+        "Connection": "keep-alive",
+        "Date": "Tue, 29 Aug 2017 05:20:09 GMT",
+        "Content-Type": "application/json; encoding=utf-8",
+        "Content-Length": "220"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
