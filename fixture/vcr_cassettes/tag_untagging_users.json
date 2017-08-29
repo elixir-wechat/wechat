@@ -1,19 +1,19 @@
 [
   {
     "request": {
-      "body": "{\"tag\":{\"id\":12}}",
+      "body": "{\"tagid\":2,\"openid_list\":[\"oGrvrjnkVgClrO4EdP-dWbTq8LuU\"]}",
       "headers": [],
       "method": "post",
       "options": [],
       "request_body": "",
-      "url": "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=amOmZf-BIbA_Jm2jWwisKp224DBXL4sJfY2zjAFQhg6ZHVqBV_x5l1oICJ33Xbl0fznAUZjA0VHQ8uV188catPle7-BMR1PKsod2S8ehcifexDwA37KjYSD9ggH61Bo7LRDdACASYK"
+      "url": "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=4cJEBiwPEIkvrXXESWFlduCeHxuUC3keOxx1g50jTLb_aBkdH8d3CXVCmgKI2bgd2Fk-34fztSHrweUTq3DSq-ypYWtPAV7BuoUL_TIqg5v0F5xFno-PQ29QhyOt60pxRZQdACAKSJ"
     },
     "response": {
       "body": "{\"errcode\":0,\"errmsg\":\"ok\"}",
       "headers": {
         "Connection": "keep-alive",
         "Content-Type": "application/json; encoding=utf-8",
-        "Date": "Fri, 25 Aug 2017 06:57:43 GMT",
+        "Date": "Mon, 28 Aug 2017 10:28:39 GMT",
         "Content-Length": "27"
       },
       "status_code": 200,

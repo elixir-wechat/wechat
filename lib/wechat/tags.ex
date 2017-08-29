@@ -29,4 +29,26 @@ defmodule Wechat.Tags do
     |> Enum.to_list
     |> Keyword.values
   end
+
+  def get_users(tag_id, next_openid \\ "") do
+    API.post "user/tag/get", %{tagid: tag_id, next_openid: next_openid}
+  end
+
+  def tagging_user(tag_id, openid) when is_binary(openid) do
+    tagging_users(tag_id, [openid])
+  end
+  def tagging_users(tag_id, openids) when is_list(openids) do
+    API.post "tags/members/batchtagging", %{openid_list: openids, tagid: tag_id}
+  end
+
+  def untagging_user(tag_id, openid) when is_binary(openid) do
+    untagging_user(tag_id, [openid])
+  end
+  def untagging_users(tag_id, openids) when is_list(openids) do
+    API.post "tags/members/batchuntagging", %{openid_list: openids, tagid: tag_id}
+  end
+
+  def get_user_tag_list(openid) do
+    API.post("tags/getidlist", %{openid: openid})
+  end
 end
