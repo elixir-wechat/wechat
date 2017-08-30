@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.2.4](https://github.com/goofansu/wechat-elixir/tree/v0.2.4) (2017-08-30)
+[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.2.3...v0.2.4)
+
+**Merged pull requests:**
+
+- add data cube api [\#14](https://github.com/goofansu/wechat-elixir/pull/14) ([1ternal](https://github.com/1ternal))
+- add user tag management [\#13](https://github.com/goofansu/wechat-elixir/pull/13) ([1ternal](https://github.com/1ternal))
+- Fixed Tag functions [\#12](https://github.com/goofansu/wechat-elixir/pull/12) ([1ternal](https://github.com/1ternal))
+
 ## [v0.2.3](https://github.com/goofansu/wechat-elixir/tree/v0.2.3) (2017-08-24)
 [Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.3...v0.2.3)
 
