@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.2.5](https://github.com/goofansu/wechat-elixir/tree/v0.2.5) (2017-10-10)
+[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.2.4...v0.2.5)
+
+**Merged pull requests:**
+
+- add support for poi and merchant api [\#15](https://github.com/goofansu/wechat-elixir/pull/15) ([1ternal](https://github.com/1ternal))
+
 ## [v0.2.4](https://github.com/goofansu/wechat-elixir/tree/v0.2.4) (2017-08-30)
 [Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.2.3...v0.2.4)
 
