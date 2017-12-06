@@ -27,7 +27,8 @@ defmodule Wechat do
   defp default_config do
     [
       api_host: "https://api.weixin.qq.com/cgi-bin",
-      mp_host: "https://mp.weixin.qq.com/cgi-bin"
+      sns_host: "https://api.weixin.qq.com/sns",
+      mp_host: "https://mp.weixin.qq.com/cgi-bin",
     ]
   end
 
