@@ -11,6 +11,12 @@ defmodule Wechat.API do
     }
   end
 
+  def clear_quota do
+    post "/clear_quota", %{
+      appid: Wechat.appid
+    }
+  end
+
   def upload(url, file, params \\ %{}) do
     post url, {:multipart, [{:file, file}]}, params
   end
