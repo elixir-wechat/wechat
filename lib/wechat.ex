@@ -20,7 +20,14 @@ defmodule Wechat do
     config()[:token] |> get_env
   end
 
-  def encoding_aes_key do
+  def aes_key do
+    case encoding_aes_key() do
+      nil -> nil
+      value-> Base.decode64!(value <> "=")
+    end
+  end
+
+  defp encoding_aes_key do
     config()[:encoding_aes_key] |> get_env
   end
 

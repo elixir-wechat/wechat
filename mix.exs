@@ -4,7 +4,7 @@ defmodule Wechat.Mixfile do
   def project do
     [
       app: :wechat,
-      version: "0.2.6",
+      version: "0.3.0",
       elixir: "~> 1.5",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -46,9 +46,9 @@ defmodule Wechat.Mixfile do
       {:excoveralls, "~> 0.7", only: :test},
       {:credo, "~> 0.3", only: [:dev, :test]},
       {:cortex, "~> 0.1", only: [:dev, :test]},
-      {:httpoison, "~> 0.12"},
+      {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
-      {:floki, "~> 0.17.0"},
+      {:sweet_xml, "~> 0.6.5"},
       {:plug, "~> 1.0"}
     ]
   end
