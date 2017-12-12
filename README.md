@@ -8,6 +8,8 @@ Wechat API wrapper in Elixir.
 
 ## Installation
 
+Notice: Do not use 0.3.0 for production, it's not stable yet.
+
 ### stable
 
   ```elixir
