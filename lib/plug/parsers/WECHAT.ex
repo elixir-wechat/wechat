@@ -12,8 +12,8 @@ defmodule Plug.Parsers.WECHAT do
   import Plug.Conn
   import SweetXml
 
-  alias Wechat.Crypto.MessageEncryptor
-  alias Wechat.Crypto.SignatureVerifier
+  alias Plug.Crypto.WechatMessageEncryptor, as: MessageEncryptor
+  alias Plug.Crypto.WechatSignatureVerifier, as: SignatureVerifier
 
   def parse(conn, "text", "xml", _headers, opts) do
     conn
