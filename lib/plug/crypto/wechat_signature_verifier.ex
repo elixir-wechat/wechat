@@ -5,7 +5,10 @@ defmodule Plug.Crypto.WechatSignatureVerifier do
 
   def verify(args, signature) do
     challenge = args |> Enum.sort |> Enum.join |> sha1
-    Plug.Crypto.secure_compare(challenge, signature)
+    case Plug.Crypto.secure_compare(challenge, signature) do
+      true -> :ok
+      false -> :error
+    end
   end
 
   defp sha1(str) do
