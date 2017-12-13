@@ -1,4 +1,4 @@
-defmodule Plug.Crypto.WechatMessageEncryptor do
+defmodule Wechat.Utils.MessageEncryptor do
   @moduledoc """
   Encrypt and decrypt wechat messages.
   """

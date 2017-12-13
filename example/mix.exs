@@ -22,7 +22,8 @@ defmodule Router.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
-      {:wechat, "~> 0.3.0"}
+      # {:wechat, "~> 0.3.0"}
+      {:wechat, path: "/Users/suyejun/git/wechat-elixir"}
     ]
   end
 end

@@ -1,4 +1,4 @@
-defmodule Plug.Crypto.WechatSignatureVerifier do
+defmodule Wechat.Utils.SignatureVerifier do
   @moduledoc """
   Verify wechat signature.
   """

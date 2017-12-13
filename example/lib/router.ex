@@ -3,24 +3,18 @@ defmodule Router do
   Router to accept push events.
   """
   use Plug.Router
-  alias Plug.Crypto.WechatSignatureVerifier, as: SignatureVerifier
 
   plug :match
-  plug Plug.Parsers, parsers: [:wechat], wechat_config: Wechat.Config
+  plug Wechat.Plugs.ValidateRequest
+  plug Wechat.Plugs.ParseMessage
   plug :dispatch
 
   get "/wechat" do
-    %{"echostr" => echostr, "timestamp" => timestamp,
-      "nonce" => nonce, "signature" => signature} = conn.query_params
-    case SignatureVerifier.verify([Wechat.token, timestamp, nonce], signature) do
-      true -> send_resp(conn, 200, echostr)
-      false -> send_resp(conn, 200, "invalid signature")
-    end
+    send_resp(conn, 200, conn.query_params["echostr"])
   end
 
   post "/wechat" do
-    params = conn.body_params
-    IO.inspect params
+    IO.inspect conn.body_params
     send_resp(conn, 200, "success")
   end
 
