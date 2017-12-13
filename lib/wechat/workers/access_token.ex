@@ -3,6 +3,7 @@ defmodule Wechat.Workers.AccessToken do
 
   use GenServer
 
+  alias Wechat.Config
   alias Wechat.API
 
   @name __MODULE__
@@ -39,9 +40,10 @@ defmodule Wechat.Workers.AccessToken do
   end
 
   defp env(key, default) do
-    :wechat
-    |> Application.get_env(Wechat)
-    |> Keyword.get(key, default)
+    case Config.config[key] do
+      nil -> default
+      val -> val
+    end
   end
 
   def get do

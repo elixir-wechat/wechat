@@ -28,7 +28,7 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
-config :wechat, Wechat,
+config :wechat,
   appid: {:system, "WECHAT_APPID"},
   secret: {:system, "WECHAT_SECRET"},
   token: {:system, "WECHAT_TOKEN"},
@@ -41,7 +41,7 @@ config :wechat, Wechat,
 #
 # The syntax is: {Module, method, [args]}
 #
-#     config :wechat, Wechat,
+#     config :wechat,
 #       access_token_fetcher: {Wechat.API, :access_token, []},
 #
 #       # set refresh interval
