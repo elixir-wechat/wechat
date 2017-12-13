@@ -16,9 +16,11 @@ defmodule Plug.Parsers.WECHAT do
   alias Plug.Crypto.WechatSignatureVerifier, as: SignatureVerifier
 
   def parse(conn, "text", "xml", _headers, opts) do
+    decoder = Keyword.get(opts, :wechat_decoder) ||
+      raise ArgumentError, "WECHAT parser expects a :wechat_decoder option"
     conn
     |> read_body(opts)
-    |> decode(opts)
+    |> decode(decoder)
   end
 
   def parse(conn, _type, _subtype, _headers, _opts) do
@@ -37,25 +39,25 @@ defmodule Plug.Parsers.WECHAT do
     raise Plug.BadRequestError
   end
 
-  defp decode({:ok, body, conn}, opts) do
+  defp decode({:ok, body, conn}, decoder) do
     msg = extract_xml(body)
     case msg_encrypted?(conn.params) do
-      true -> decrypt_msg(conn, msg, opts)
+      true -> decrypt_msg(conn, msg, decoder)
       false -> {:ok, msg, conn}
     end
   rescue
     e -> raise Plug.Parsers.ParseError, exception: e
   end
 
-  defp decrypt_msg(conn, %{"Encrypt" => msg_encrypted}, opts) do
-    appid = Keyword.fetch!(opts, :appid)
-    token = Keyword.fetch!(opts, :token)
-    aes_key = Keyword.fetch!(opts, :aes_key)
+  defp decrypt_msg(conn, %{"Encrypt" => msg_encrypted}, decoder) do
+    appid = decoder.appid
+    token = decoder.token
+    encoding_aes_key = decoder.encoding_aes_key
 
     %{"timestamp" => timestamp, "nonce" => nonce, "msg_signature" => signature} = conn.params
     case SignatureVerifier.verify([token, timestamp, nonce, msg_encrypted], signature) do
       true ->
-        case MessageEncryptor.decrypt(msg_encrypted, aes_key) do
+        case MessageEncryptor.decrypt(msg_encrypted, encoding_aes_key) do
           {^appid, msg_decrypted} ->
             {:ok, extract_xml(msg_decrypted), conn}
           _ ->

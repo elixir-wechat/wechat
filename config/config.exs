@@ -32,7 +32,7 @@ config :wechat, Wechat,
   appid: {:system, "WECHAT_APPID"},
   secret: {:system, "WECHAT_SECRET"},
   token: {:system, "WECHAT_TOKEN"},
-  encoding_aes_key: {:system, "WECHAT_AES_KEY"}
+  encoding_aes_key: {:system, "WECHAT_ENCODING_AES_KEY"}
 
 # To define your own method to fetch the access token, you can provide
 # a `access_token_fetcher` here. This is useful when you are sharing
