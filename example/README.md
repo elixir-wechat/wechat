@@ -1,6 +1,6 @@
 # Router
 
-Example shows how to use `Plug.Parsers.WECHAT`.
+Example shows how to use `Wechat.Plugs`.
 
 ## Usage
 

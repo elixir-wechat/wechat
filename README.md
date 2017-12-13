@@ -113,20 +113,20 @@ Notice: Do not use 0.3.0 for production, it's not stable yet.
     defmodule MyApp.WechatController do
       use MyApp.Web, :controller
 
-      plug Wechat.Plugs.CheckUrlSignature
-      plug Wechat.Plugs.CheckMsgSignature when action in [:create]
+      plug Wechat.Plugs.ValidateRequest
+      plug Wechat.Plugs.ParseMessage when action in [:create]
 
       def index(conn, %{"echostr" => echostr}) do
         text conn, echostr
       end
 
       def create(conn, _params) do
-        msg = conn.assigns[:msg]
+        msg = conn.body_params
         reply = build_text_reply(msg, msg.content)
         render conn, "text.xml", reply: reply
       end
 
-      defp build_text_reply(%{tousername: to, fromusername: from}, content) do
+      defp build_text_reply(%{"ToUserName" => to, "FromUserName" => from}, content) do
         %{from: to, to: from, content: content}
       end
     end
