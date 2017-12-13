@@ -8,13 +8,11 @@ Wechat API wrapper in Elixir.
 
 ## Installation
 
-Notice: Do not use 0.3.0 for production, it's not stable yet.
-
 ### stable
 
   ```elixir
   def deps do
-    [{:wechat, "~> 0.2.0"}]
+    [{:wechat, "~> 0.3.0"}]
   end
   ```
 
