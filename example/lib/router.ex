@@ -5,8 +5,8 @@ defmodule Router do
   use Plug.Router
 
   plug :match
-  plug Wechat.Plugs.ValidateRequest
-  plug Wechat.Plugs.ParseMessage
+  plug Wechat.Plugs.RequestValidator
+  plug Wechat.Plugs.MessageParser
   plug :dispatch
 
   get "/wechat" do

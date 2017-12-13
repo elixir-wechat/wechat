@@ -1,4 +1,4 @@
-defmodule Wechat.Plugs.ParseMessage do
+defmodule Wechat.Plugs.MessageParser do
   @moduledoc false
 
   defmodule ParseError do

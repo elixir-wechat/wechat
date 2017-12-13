@@ -111,8 +111,8 @@ Wechat API wrapper in Elixir.
     defmodule MyApp.WechatController do
       use MyApp.Web, :controller
 
-      plug Wechat.Plugs.ValidateRequest
-      plug Wechat.Plugs.ParseMessage when action in [:create]
+      plug Wechat.Plugs.RequestValidator
+      plug Wechat.Plugs.MessageParser when action in [:create]
 
       def index(conn, %{"echostr" => echostr}) do
         text conn, echostr

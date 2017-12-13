@@ -1,4 +1,4 @@
-defmodule Wechat.Plugs.ValidateRequest do
+defmodule Wechat.Plugs.RequestValidator do
   @moduledoc false
 
   import Plug.Conn
