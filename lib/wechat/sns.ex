@@ -1,12 +1,14 @@
 defmodule Wechat.SNS do
   @moduledoc false
 
-  use Wechat.HTTP, host: Wechat.config[:sns_host]
+  alias Wechat.Config
+
+  use Wechat.HTTP, host: Config.config[:sns_host]
 
   def jscode2session(code) do
     get "jscode2session", %{
-      appid: Wechat.appid,
-      secret: Wechat.secret,
+      appid: Config.appid,
+      secret: Config.secret,
       js_code: code,
       grant_type: "authorization_code",
     }
