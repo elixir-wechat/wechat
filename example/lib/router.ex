@@ -6,7 +6,7 @@ defmodule Router do
   alias Plug.Crypto.WechatSignatureVerifier, as: SignatureVerifier
 
   plug :match
-  plug Plug.Parsers, parsers: [:wechat], wechat_decoder: Wechat
+  plug Plug.Parsers, parsers: [:wechat], wechat_config: Wechat.Config
   plug :dispatch
 
   get "/wechat" do
