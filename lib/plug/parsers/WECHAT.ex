@@ -43,9 +43,8 @@ defmodule Plug.Parsers.WECHAT do
     msg = extract_xml(body)
     case msg_encrypted?(conn.params) do
       true ->
-        %{"Encrypt" => encrypted} = msg
-        case verify_msg_signature(config.token, encrypted, conn.params) do
-          {:ok, encrypted} -> {:ok, decrypt(encrypted, config), conn}
+        case verify_msg_signature(config.token, msg, conn.query_params) do
+          {:ok, msg_encrypted} -> {:ok, decrypt(msg_encrypted, config), conn}
           :error -> raise ParseError, "invalid msg_signature"
         end
       false ->
@@ -55,22 +54,22 @@ defmodule Plug.Parsers.WECHAT do
     e -> raise Plug.Parsers.ParseError, exception: e
   end
 
-  defp verify_msg_signature(token, encrypted,
+  defp verify_msg_signature(token, %{"Encrypt" => msg_encrypted},
     %{"timestamp" => timestamp, "nonce" => nonce,
       "msg_signature" => signature}) do
-    args = [token, timestamp, nonce, encrypted]
+    args = [token, timestamp, nonce, msg_encrypted]
     case SignatureVerifier.verify(args, signature) do
       :ok ->
-        {:ok, encrypted}
+        {:ok, msg_encrypted}
       :error ->
         :error
     end
   end
 
-  defp decrypt(encrypted, config) do
+  defp decrypt(msg_encrypted, config) do
     appid = config.appid
     encoding_aes_key = config.encoding_aes_key
-    case MessageEncryptor.decrypt(encrypted, encoding_aes_key) do
+    case MessageEncryptor.decrypt(msg_encrypted, encoding_aes_key) do
       {^appid, msg_decrypted} ->
         extract_xml(msg_decrypted)
       _ ->
