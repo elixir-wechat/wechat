@@ -29,7 +29,7 @@ Wechat API wrapper in Elixir.
 * Add config in `config.exs`
 
     ```elixir
-    config :wechat, Wechat,
+    config :wechat,
       appid: "wechat app id",
       secret: "wechat app secret",
       token: "wechat token",
