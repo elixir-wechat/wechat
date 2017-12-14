@@ -42,7 +42,6 @@ defmodule Wechat.Mixfile do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:credo, "~> 0.3", only: :dev},
       {:exvcr, "~> 0.8", only: :test},
       {:excoveralls, "~> 0.7", only: :test},
       {:httpoison, "~> 0.13"},
