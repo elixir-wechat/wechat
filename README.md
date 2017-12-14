@@ -71,18 +71,6 @@ Wechat API wrapper in Elixir.
    iex> File.write!('/tmp/file', file)
     ```
 
-## Plug
-
-* `Wechat.Plugs.CheckUrlSignature`
-
-  * Check url signature
-  * [接入指南](http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319&token=&lang=zh_CN)
-
-* `Wechat.Plugs.CheckMsgSignature`
-
-  * Parse xml message (support decrypt msg)
-  * [消息加密解密技术方案](http://mp.weixin.qq.com/wiki/2/3478f69c0d0bbe8deb48d66a3111ff6e.html)
-
 ## Plug Usage (in Phonenix controller)
 
 * router.ex
