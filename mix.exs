@@ -6,6 +6,7 @@ defmodule Wechat.Mixfile do
       app: :wechat,
       version: "0.3.5",
       elixir: "~> 1.5",
+      elixirc_options: [warnings_as_errors: true],
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
