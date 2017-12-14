@@ -2,13 +2,14 @@ defmodule Wechat.Utils.SignatureVerifier do
   @moduledoc """
   Verify wechat signature.
   """
+  alias Plug.Crypto, as: PCryto
 
-  def verify(args, signature) do
-    challenge = args |> Enum.sort |> Enum.join |> sha1
-    case Plug.Crypto.secure_compare(challenge, signature) do
-      true -> :ok
-      false -> :error
-    end
+  def verify?(args, signature) do
+    args
+    |> Enum.sort
+    |> Enum.join
+    |> sha1
+    |> PCryto.secure_compare(signature)
   end
 
   defp sha1(str) do

@@ -14,9 +14,10 @@ defmodule Wechat.Plugs.RequestValidator do
     conn = fetch_query_params(conn)
     %{"timestamp" => timestamp, "nonce" => nonce,
       "signature" => signature} = conn.query_params
-    case SignatureVerifier.verify([token(), timestamp, nonce], signature) do
-      :ok -> conn
-      :error -> conn |> send_resp(400, "") |> halt
+    if SignatureVerifier.verify?([token(), timestamp, nonce], signature) do
+      conn
+    else
+      conn |> send_resp(400, "") |> halt
     end
   end
 end

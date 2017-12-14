@@ -27,17 +27,16 @@ defmodule Wechat.Plugs.MessageParser do
 
   defp decode({:ok, body, conn}) do
     msg = extract_xml(body)
-    case msg_encrypted?(conn.params) do
-      true ->
-        case verify_msg_signature(msg, conn.query_params) do
-          {:ok, msg_encrypted} ->
-            msg_decrypted = decrypt(msg_encrypted)
-            %{conn | body_params: msg_decrypted}
-          :error ->
-            raise ParseError, "invalid msg_signature"
-        end
-      false ->
-        %{conn | body_params: msg}
+    if msg_encrypted?(conn.params) do
+      case verify_msg_signature(msg, conn.query_params) do
+        {:ok, msg_encrypted} ->
+          msg_decrypted = decrypt(msg_encrypted)
+          %{conn | body_params: msg_decrypted}
+        :error ->
+          raise ParseError, "invalid msg_signature"
+      end
+    else
+      %{conn | body_params: msg}
     end
   rescue
     _ ->
@@ -50,11 +49,10 @@ defmodule Wechat.Plugs.MessageParser do
     %{"timestamp" => timestamp, "nonce" => nonce,
       "msg_signature" => signature}) do
     args = [token(), timestamp, nonce, msg_encrypted]
-    case SignatureVerifier.verify(args, signature) do
-      :ok ->
-        {:ok, msg_encrypted}
-      :error ->
-        :error
+    if SignatureVerifier.verify?(args, signature) do
+      {:ok, msg_encrypted}
+    else
+      :error
     end
   end
 
