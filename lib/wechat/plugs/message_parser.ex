@@ -49,7 +49,7 @@ defmodule Wechat.Plugs.MessageParser do
     %{"timestamp" => timestamp, "nonce" => nonce,
       "msg_signature" => signature}) do
     args = [token(), timestamp, nonce, msg_encrypted]
-    if SignatureVerifier.verify(args, signature) do
+    if SignatureVerifier.verify?(args, signature) do
       {:ok, msg_encrypted}
     else
       :error
