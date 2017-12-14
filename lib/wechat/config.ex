@@ -11,20 +11,12 @@ defmodule Wechat.Config do
     Keyword.merge(@default_config, Application.get_all_env(:wechat))
   end
 
-  def appid do
-    config()[:appid] |> get_env
-  end
+  @keys ~w(appid secret token encoding_aes_key)a
 
-  def secret do
-    config()[:secret] |> get_env
-  end
-
-  def token do
-    config()[:token] |> get_env
-  end
-
-  def encoding_aes_key do
-    config()[:encoding_aes_key] |> get_env
+  for key <- @keys do
+    def unquote(key)() do
+      get_env(config()[unquote(key)])
+    end
   end
 
   defp get_env({:system, env_var}) do
