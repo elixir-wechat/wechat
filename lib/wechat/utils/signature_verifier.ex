@@ -6,10 +6,15 @@ defmodule Wechat.Utils.SignatureVerifier do
 
   def verify?(args, signature) do
     args
+    |> sign
+    |> PCryto.secure_compare(signature)
+  end
+
+  def sign(args) do
+    args
     |> Enum.sort
     |> Enum.join
     |> sha1
-    |> PCryto.secure_compare(signature)
   end
 
   defp sha1(str) do
