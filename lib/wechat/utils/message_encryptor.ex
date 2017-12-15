@@ -24,11 +24,11 @@ defmodule Wechat.Utils.MessageEncryptor do
     end
   end
 
-  # random(16B) + msg_len(4B) + msg + appid
+  # random(16B) + msg_size(4B) + msg + appid
   defp pack_appid(msg, appid) do
     random = SecureRandom.random_bytes(16)
-    msg_len = String.length(msg)
-    random <> <<msg_len :: 32>> <> msg <> appid
+    msg_size = byte_size(msg)
+    random <> <<msg_size :: 32>> <> msg <> appid
   end
 
   defp encode_padding_with_pkcs7(data) do
@@ -74,9 +74,9 @@ defmodule Wechat.Utils.MessageEncryptor do
     binary_part(data, 0, data_size - pad)
   end
 
-  # random(16B) + msg_len(4B) + msg + appid
-  defp unpack_appid(<<_ :: binary-16, msg_len :: integer-32,
-    msg :: binary-size(msg_len), appid :: binary>>) do
+  # random(16B) + msg_size(4B) + msg + appid
+  defp unpack_appid(<<_ :: binary-16, msg_size :: integer-32,
+    msg :: binary-size(msg_size), appid :: binary>>) do
     {appid, msg}
   end
 end
