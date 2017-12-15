@@ -6,10 +6,10 @@ defmodule Wechat.TagsTest do
 
   @tag_names Enum.map(1..3, & "awesome tag #{&1}")
 
-  test "#create" do
+  test "#batch_create" do
     use_cassette "tag_create" do
       # exvcr always return the first result here :< and we check the tags from getter :D
-      Tags.create(@tag_names)
+      Tags.batch_create(@tag_names)
       %{"tags" => tags} = Tags.get()
 
       recv_names = Enum.map(tags, & Map.get(&1, "name"))
@@ -32,11 +32,11 @@ defmodule Wechat.TagsTest do
   end
 
   @tag_ids [115, 116, 117] #grab ids from exvcr tag_get.json cassettes
-  test "update" do
+  test "#batch_update" do
     use_cassette "tag_update" do
       input = Enum.map(@tag_ids, & {&1, "lame tag #{&1}"})
 
-      result = Tags.update(input)
+      result = Tags.batch_update(input)
 
       for ret <- result do
         assert ret["errcode"] == 0
@@ -45,9 +45,9 @@ defmodule Wechat.TagsTest do
     end
   end
 
-  test "#delete" do
+  test "#batch_delete" do
     use_cassette "tag_delete" do
-      result = Tags.delete(@tag_ids)
+      result = Tags.batch_delete(@tag_ids)
 
       for ret <- result do
         assert ret["errcode"] == 0
