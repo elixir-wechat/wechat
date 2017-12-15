@@ -28,7 +28,7 @@ defmodule Wechat.MenuTest do
     end
 
     @cond_json "./fixture/menu_assets/menu_conditional.json" |> Path.expand("./") |> File.read! |> Poison.decode!
-    @menu_id 498512099
+    @menu_id 498_512_099
     test "#create_contional" do
       use_cassette "menu_create_conditional" do
         result = Menu.create_conditional(@cond_json)

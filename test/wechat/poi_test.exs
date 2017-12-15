@@ -33,8 +33,8 @@ defmodule Wechat.POITest do
       result = POI.get_list(0, 10)
       assert result["errcode"] == 0
       assert result["errmsg"] == "ok"
-      assert result["business_list"] |> is_list
-      assert result["total_count"] |> is_integer
+      assert is_list(result["business_list"])
+      assert is_integer(result["total_count"])
     end
   end
 
@@ -64,7 +64,7 @@ defmodule Wechat.POITest do
   test "#get_wxcategory" do
     use_cassette "poi/get_wxcategory" do
       result = POI.get_wxcategory
-      assert result["category_list"] |> is_list
+      assert is_list(result["category_list"])
     end
   end
 end

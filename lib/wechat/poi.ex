@@ -17,7 +17,7 @@ defmodule Wechat.POI do
   end
 
   def get_list(begin, limit) when is_integer(limit) and is_integer(begin) do
-    API.post("/poi/getpoilist", %{ begin: begin, limit: limit})
+    API.post("/poi/getpoilist", %{begin: begin, limit: limit})
   end
 
   def delete(id) do
