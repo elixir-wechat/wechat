@@ -20,9 +20,9 @@ defmodule Wechat.Merchant do
 
   def modify(intro, media_id) do
     post("/modify_merchant", %{
-      intro: intro,
-      headimg_mediaid: media_id
-    })
+          intro: intro,
+          headimg_mediaid: media_id
+         })
   end
 
   def get_district do
@@ -61,14 +61,6 @@ defmodule Wechat.Merchant do
 
   def delete_store(poi_id) do
     post("/del_store", %{poi_id: poi_id})
-  end
-
-  # TODO
-  def migrate_from_poi do
-  end
-
-  # TODO
-  def set_cards do
   end
 
   defp maybe_put_in(params, _id, nil),                    do: params
