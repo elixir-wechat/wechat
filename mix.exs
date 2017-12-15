@@ -45,6 +45,7 @@ defmodule Wechat.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:sweet_xml, "~> 0.6.5"},
+      {:secure_random, "~> 0.5"},
       {:plug, "~> 1.0", optional: true},
 
       {:exvcr, "~> 0.8", only: :test},
