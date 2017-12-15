@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"touser\":\"oi00OuKAhA8bm5okpaIDs7WmUZr4\",\"text\":{\"content\":\"hello from wechat-elixir\"},\"msgtype\":\"text\"}",
+      "body": "{\"touser\":\"oi00OuKAhA8bm5okpaIDs7WmUZr4\",\"text\":{\"content\":\"hello from wechat_elixir\"},\"msgtype\":\"text\"}",
       "headers": [],
       "method": "post",
       "options": [],

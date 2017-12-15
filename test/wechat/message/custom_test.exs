@@ -12,7 +12,7 @@ defmodule Wechat.Message.CustomTest do
 
   test "send custom text", %{openid: openid} do
     use_cassette "send_custom_text" do
-      result = Custom.send_text(openid, "hello from wechat-elixir")
+      result = Custom.send_text(openid, "hello from wechat_elixir")
       assert result["errcode"] == 0
       assert result["errmsg"] == "ok"
     end

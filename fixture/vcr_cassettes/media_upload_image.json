@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{:multipart, [file: \"/Users/suyejun/git/wechat-elixir/fixture/media_assets/elixir.png\"]}",
+      "body": "{:multipart, [file: \"/Users/suyejun/git/wechat_elixir/fixture/media_assets/elixir.png\"]}",
       "headers": [],
       "method": "post",
       "options": [],

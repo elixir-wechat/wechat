@@ -66,7 +66,7 @@ defmodule Wechat.Mixfile do
       name: :wechat,
       licenses: ["MIT"],
       maintainers: ["goofansu"],
-      links: %{"Github" => "https://github.com/goofansu/wechat-elixir"}
+      links: %{"Github" => "https://github.com/goofansu/wechat_elixir"}
     ]
   end
 end

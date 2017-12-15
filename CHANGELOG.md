@@ -1,56 +1,56 @@
 # Change Log
 
-## [v0.2.5](https://github.com/goofansu/wechat-elixir/tree/v0.2.5) (2017-10-10)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.2.4...v0.2.5)
+## [v0.2.5](https://github.com/goofansu/wechat_elixir/tree/v0.2.5) (2017-10-10)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.2.4...v0.2.5)
 
 **Merged pull requests:**
 
-- add support for poi and merchant api [\#15](https://github.com/goofansu/wechat-elixir/pull/15) ([1ternal](https://github.com/1ternal))
+- add support for poi and merchant api [\#15](https://github.com/goofansu/wechat_elixir/pull/15) ([1ternal](https://github.com/1ternal))
 
-## [v0.2.4](https://github.com/goofansu/wechat-elixir/tree/v0.2.4) (2017-08-30)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.2.3...v0.2.4)
-
-**Merged pull requests:**
-
-- add data cube api [\#14](https://github.com/goofansu/wechat-elixir/pull/14) ([1ternal](https://github.com/1ternal))
-- add user tag management [\#13](https://github.com/goofansu/wechat-elixir/pull/13) ([1ternal](https://github.com/1ternal))
-- Fixed Tag functions [\#12](https://github.com/goofansu/wechat-elixir/pull/12) ([1ternal](https://github.com/1ternal))
-
-## [v0.2.3](https://github.com/goofansu/wechat-elixir/tree/v0.2.3) (2017-08-24)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.3...v0.2.3)
+## [v0.2.4](https://github.com/goofansu/wechat_elixir/tree/v0.2.4) (2017-08-30)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.2.3...v0.2.4)
 
 **Merged pull requests:**
 
-- Add menu support [\#11](https://github.com/goofansu/wechat-elixir/pull/11) ([1ternal](https://github.com/1ternal))
-- improve naming [\#10](https://github.com/goofansu/wechat-elixir/pull/10) ([qhwa](https://github.com/qhwa))
-- more custom message types supported [\#9](https://github.com/goofansu/wechat-elixir/pull/9) ([qhwa](https://github.com/qhwa))
-- Custom refresh interval [\#8](https://github.com/goofansu/wechat-elixir/pull/8) ([qhwa](https://github.com/qhwa))
-- Enable fetching access token with a custom method [\#7](https://github.com/goofansu/wechat-elixir/pull/7) ([qhwa](https://github.com/qhwa))
-- bugfix: fix wrong API url [\#5](https://github.com/goofansu/wechat-elixir/pull/5) ([qhwa](https://github.com/qhwa))
+- add data cube api [\#14](https://github.com/goofansu/wechat_elixir/pull/14) ([1ternal](https://github.com/1ternal))
+- add user tag management [\#13](https://github.com/goofansu/wechat_elixir/pull/13) ([1ternal](https://github.com/1ternal))
+- Fixed Tag functions [\#12](https://github.com/goofansu/wechat_elixir/pull/12) ([1ternal](https://github.com/1ternal))
 
-## [v0.1.3](https://github.com/goofansu/wechat-elixir/tree/v0.1.3) (2016-09-11)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.2...v0.1.3)
+## [v0.2.3](https://github.com/goofansu/wechat_elixir/tree/v0.2.3) (2017-08-24)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.1.3...v0.2.3)
+
+**Merged pull requests:**
+
+- Add menu support [\#11](https://github.com/goofansu/wechat_elixir/pull/11) ([1ternal](https://github.com/1ternal))
+- improve naming [\#10](https://github.com/goofansu/wechat_elixir/pull/10) ([qhwa](https://github.com/qhwa))
+- more custom message types supported [\#9](https://github.com/goofansu/wechat_elixir/pull/9) ([qhwa](https://github.com/qhwa))
+- Custom refresh interval [\#8](https://github.com/goofansu/wechat_elixir/pull/8) ([qhwa](https://github.com/qhwa))
+- Enable fetching access token with a custom method [\#7](https://github.com/goofansu/wechat_elixir/pull/7) ([qhwa](https://github.com/qhwa))
+- bugfix: fix wrong API url [\#5](https://github.com/goofansu/wechat_elixir/pull/5) ([qhwa](https://github.com/qhwa))
+
+## [v0.1.3](https://github.com/goofansu/wechat_elixir/tree/v0.1.3) (2016-09-11)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.1.2...v0.1.3)
 
 **Closed issues:**
 
-- unused variable in Wechat.Plugs.CheckMsgSignature.decrypt\_msg/3 [\#3](https://github.com/goofansu/wechat-elixir/issues/3)
+- unused variable in Wechat.Plugs.CheckMsgSignature.decrypt\_msg/3 [\#3](https://github.com/goofansu/wechat_elixir/issues/3)
 
 **Merged pull requests:**
 
-- Message [\#4](https://github.com/goofansu/wechat-elixir/pull/4) ([linjunpop](https://github.com/linjunpop))
-- Added floki to applications. [\#2](https://github.com/goofansu/wechat-elixir/pull/2) ([linjunpop](https://github.com/linjunpop))
+- Message [\#4](https://github.com/goofansu/wechat_elixir/pull/4) ([linjunpop](https://github.com/linjunpop))
+- Added floki to applications. [\#2](https://github.com/goofansu/wechat_elixir/pull/2) ([linjunpop](https://github.com/linjunpop))
 
-## [v0.1.2](https://github.com/goofansu/wechat-elixir/tree/v0.1.2) (2016-08-03)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.1...v0.1.2)
+## [v0.1.2](https://github.com/goofansu/wechat_elixir/tree/v0.1.2) (2016-08-03)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.1.1...v0.1.2)
 
 **Merged pull requests:**
 
-- Add a Gitter chat badge to README.md [\#1](https://github.com/goofansu/wechat-elixir/pull/1) ([gitter-badger](https://github.com/gitter-badger))
+- Add a Gitter chat badge to README.md [\#1](https://github.com/goofansu/wechat_elixir/pull/1) ([gitter-badger](https://github.com/gitter-badger))
 
-## [v0.1.1](https://github.com/goofansu/wechat-elixir/tree/v0.1.1) (2016-07-28)
-[Full Changelog](https://github.com/goofansu/wechat-elixir/compare/v0.1.0...v0.1.1)
+## [v0.1.1](https://github.com/goofansu/wechat_elixir/tree/v0.1.1) (2016-07-28)
+[Full Changelog](https://github.com/goofansu/wechat_elixir/compare/v0.1.0...v0.1.1)
 
-## [v0.1.0](https://github.com/goofansu/wechat-elixir/tree/v0.1.0) (2016-07-27)
+## [v0.1.0](https://github.com/goofansu/wechat_elixir/tree/v0.1.0) (2016-07-27)
 
 
 \* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
