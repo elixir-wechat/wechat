@@ -42,13 +42,16 @@ defmodule Wechat.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:exvcr, "~> 0.8", only: :test},
-      {:excoveralls, "~> 0.7", only: :test},
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:sweet_xml, "~> 0.6.5"},
-      {:plug, "~> 1.0"}
+      {:plug, "~> 1.0", optional: true},
+
+      {:exvcr, "~> 0.8", only: :test},
+      {:excoveralls, "~> 0.7", only: :test},
+
+      {:ex_doc, ">= 0.0.0", only: [:dev, :docs]},
+      {:inch_ex, only: :docs}
     ]
   end
 
