@@ -8,7 +8,8 @@ Warning: The project is under active development, don't use in production env.
 [![codebeat badge](https://codebeat.co/badges/60f20da5-c961-4100-a19e-135ad79c8457)](https://codebeat.co/projects/github-com-goofansu-wechat_elixir-master)
 [![Coverage Status](https://coveralls.io/repos/github/goofansu/wechat_elixir/badge.svg)](https://coveralls.io/github/goofansu/wechat_elixir)
 [![Ebert](https://ebertapp.io/github/goofansu/wechat_elixir.svg)](https://ebertapp.io/github/goofansu/wechat_elixir)
-[![Inline docs](http://inch-ci.org/github/goofansu/wechat_elixir.svg)](http://inch-ci.org/github/goofansu/wechat_elixir)
+[![Inline docs](http://inch-ci.org/github/goofansu/wechat_elixir.svg)](https://inch-ci.org/github/goofansu/wechat_elixir)
+[![Hex.pm](https://img.shields.io/hexpm/v/wechat.svg)](https://hex.pm/packages/wechat)
 
 ## Installation
 
