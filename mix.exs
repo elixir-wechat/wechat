@@ -43,7 +43,7 @@ defmodule Wechat.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"},
+      {:jason, "~> 1.0-rc"},
       {:sweet_xml, "~> 0.6.5"},
       {:secure_random, "~> 0.5"},
       {:plug, "~> 1.0", optional: true},

@@ -4,7 +4,7 @@ defmodule Wechat.POITest do
 
   alias Wechat.POI
 
-  @params "../../fixture/poi_assets/create.json" |> Path.expand(__DIR__) |> File.read! |> Poison.decode!
+  @params "../../fixture/poi_assets/create.json" |> Path.expand(__DIR__) |> File.read! |> Jason.decode!
 
   @tag pending: true
   test "#create" do

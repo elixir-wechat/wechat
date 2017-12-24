@@ -17,9 +17,9 @@ defmodule Wechat.HTTP do
   use HTTPoison.Base
 
   def process_response_body(body) do
-    case Poison.decode(body) do
+    case Jason.decode(body) do
       {:ok, value} -> value # json
-      {:error, :invalid, _} -> body # raw
+      {:error, _} -> body # raw
     end
   end
 
@@ -48,7 +48,7 @@ defmodule Wechat.HTTP do
         body =
           case body do
             {:multipart, _} -> body
-            _ -> Poison.encode!(body)
+            _ -> Jason.encode!(body)
           end
 
         unquote(opts[:host])

@@ -4,7 +4,7 @@ defmodule Wechat.MenuTest do
 
     alias Wechat.Menu
 
-    @json "./fixture/menu_assets/menu.json" |> Path.expand("./") |> File.read! |> Poison.decode!
+    @json "./fixture/menu_assets/menu.json" |> Path.expand("./") |> File.read! |> Jason.decode!
 
     test "#create" do
       use_cassette "menu_create" do
@@ -27,7 +27,7 @@ defmodule Wechat.MenuTest do
       end
     end
 
-    @cond_json "./fixture/menu_assets/menu_conditional.json" |> Path.expand("./") |> File.read! |> Poison.decode!
+    @cond_json "./fixture/menu_assets/menu_conditional.json" |> Path.expand("./") |> File.read! |> Jason.decode!
     @menu_id 498_512_099
     test "#create_contional" do
       use_cassette "menu_create_conditional" do
