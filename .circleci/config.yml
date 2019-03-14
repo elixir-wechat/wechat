@@ -8,5 +8,7 @@ jobs:
 
     steps:
       - checkout
+      - run: mix local.hex --force
+      - run: mix local.rebar --force
       - run: mix deps.get --only test
       - run: mix test
