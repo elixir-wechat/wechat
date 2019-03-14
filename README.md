@@ -1,6 +1,8 @@
 # Wechat
 Wechat API wrapper in Elixir.
 
+[![CircleCI](https://circleci.com/gh/elixir-wechat/wechat.svg?style=svg)](https://circleci.com/gh/elixir-wechat/wechat)
+
 ## Installation
 ```elixir
 def deps do
