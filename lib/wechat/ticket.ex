@@ -1,8 +1,12 @@
 defmodule Wechat.Ticket do
   @moduledoc false
 
-  alias Wechat.API
+  import Wechat
 
-  def jsapi_ticket, do: API.get "/ticket/getticket", %{type: :jsapi}
-  def api_ticket, do: API.get "/ticket/getticket", %{type: :wx_card}
+  def get_ticket(client, type) when type in [:jsapi, :wx_card],
+    do: get(client, "cgi-bin/ticket/getticket", params: [type: type])
+
+  def jsapi_ticket(client), do: get_ticket(client, :jsapi)
+
+  def wxcard_ticket(client), do: get_ticket(client, :wx_card)
 end

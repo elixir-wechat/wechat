@@ -1,25 +1,20 @@
 defmodule Wechat.User do
   @moduledoc false
 
-  alias Wechat.API
+  import Wechat
 
-  def get(next_openid \\ "") do
-    API.get "/user/get", %{
-      next_openid: next_openid
-    }
+  def get(client, next_openid \\ "") do
+    params = [next_openid: next_openid]
+    get(client, "cgi-bin/user/get", params: params)
   end
 
-  def info(openid, lang \\ "zh_CN") do
-    API.get "/user/info", %{
-      openid: openid,
-      lang: lang
-    }
+  def info(client, openid, lang \\ "zh_CN") do
+    params = [openid: openid, lang: lang]
+    get(client, "cgi-bin/user/info", params: params)
   end
 
-  def update_remark(openid, remark) do
-    API.post "/user/info/updateremark", %{
-      openid: openid,
-      remark: remark
-    }
+  def update_remark(client, openid, remark) do
+    body = %{openid: openid, remark: remark}
+    post(client, "cgi-bin/user/info/updateremark", body)
   end
 end

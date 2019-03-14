@@ -1,25 +1,16 @@
 defmodule Wechat.Media do
   @moduledoc false
 
-  alias Wechat.API
+  import Wechat
 
-  def upload_image(file) do
-    API.upload "/media/upload", file, %{type: :image}
+  @media_types [:image, :thumb, :voice, :video]
+
+  def upload(client, file, type) when type in @media_types do
+    body = {:multipart, [{:file, file}]}
+    post(client, "cgi-bin/media/upload", body, params: [type: type])
   end
 
-  def upload_voice(file) do
-    API.upload "/media/upload", file, %{type: :voice}
-  end
-
-  def upload_video(file) do
-    API.upload "/media/upload", file, %{type: :video}
-  end
-
-  def upload_thumb(file) do
-    API.upload "/media/upload", file, %{type: :thumb}
-  end
-
-  def get(media_id) do
-    API.download "/media/get", %{media_id: media_id}
+  def get(client, media_id) do
+    get(client, "cgi-bin/media/get", params: [media_id: media_id])
   end
 end

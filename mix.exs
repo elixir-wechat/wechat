@@ -4,19 +4,18 @@ defmodule Wechat.Mixfile do
   def project do
     [
       app: :wechat,
-      version: "0.3.7",
+      version: "0.4.0",
       elixir: "~> 1.5",
       elixirc_options: [warnings_as_errors: true],
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
+
+      # Publish package
+      name: "Wechat",
       package: package(),
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
-        vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test,
-        coveralls: :test
-      ]
+      docs: docs()
     ]
   end
 
@@ -43,31 +42,28 @@ defmodule Wechat.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.13"},
-      {:jason, "~> 1.0-rc"},
-      {:sweet_xml, "~> 0.6.5"},
-      {:secure_random, "~> 0.5"},
-      {:plug, "~> 1.0", optional: true},
-
-      {:exvcr, "~> 0.8", only: :test},
-      {:excoveralls, "~> 0.7", only: :test},
-
-      {:ex_doc, ">= 0.0.0", only: [:dev, :docs]},
-      {:inch_ex, ">= 0.0.0", only: :docs}
+      {:jason, "~> 1.0"},
+      {:redix, ">= 0.0.0", optional: true},
+      {:bypass, "~> 1.0", only: :test},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
   end
 
-  defp description do
-    """
-    Wechat API wrapper in Elixir.
-    """
-  end
+  defp description, do: "Wechat API wrapper in Elixir."
 
   defp package do
     [
       name: :wechat,
       licenses: ["MIT"],
       maintainers: ["goofansu"],
-      links: %{"Github" => "https://github.com/goofansu/wechat_elixir"}
+      links: %{"Github" => "https://github.com/elixir-wechat/wechat"}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md"]
     ]
   end
 end

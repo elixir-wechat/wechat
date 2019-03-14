@@ -1,35 +1,33 @@
 defmodule Wechat.Menu do
-  @moduledoc """
-  Menu API.
-  """
+  @moduledoc false
 
-  alias Wechat.API
+  import Wechat
 
-  def create(menu) do
-    API.post("/menu/create", menu)
+  def create(client, menu) do
+    post(client, "cgi-bin/menu/create", menu)
   end
 
-  def get do
-    API.get("/menu/get")
+  def get(client) do
+    get(client, "cgi-bin/menu/get")
   end
 
-  def delete do
-    API.get("/menu/delete")
+  def delete(client) do
+    get(client, "cgi-bin/menu/delete")
   end
 
-  def create_conditional(menu)  do
-    API.post("/menu/addconditional", menu)
+  def add_conditional(client, menu) do
+    post(client, "cgi-bin/menu/addconditional", menu)
   end
 
-  def delete_conditional(menu_id) do
-    API.post("/menu/delconditional", %{"menuid" => menu_id})
+  def delete_conditional_menu(client, menu_id) do
+    post(client, "cgi-bin/menu/delconditional", %{menuid: menu_id})
   end
 
-  def try_match(user_id) do
-    API.post("/menu/trymatch", %{"user_id" => user_id})
+  def try_match(client, user_id) do
+    post(client, "cgi-bin/menu/trymatch", %{user_id: user_id})
   end
 
-  def get_self_menu do
-    API.get("/get_current_selfmenu_info")
+  def get_current_selfmenu_info(client) do
+    get(client, "cgi-bin/get_current_selfmenu_info")
   end
 end

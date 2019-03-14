@@ -1,36 +1,39 @@
 defmodule Wechat.UserTest do
-  use ExUnit.Case, async: false
-  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  use WechatBypass.Case, async: true
 
-  alias Wechat.User
+  import Wechat.User
 
-  @openid "oi00OuKAhA8bm5okpaIDs7WmUZr4"
-
-  setup_all do
-    [openid: @openid]
+  @tag bypass_api: %{
+         method: "GET",
+         path: "/cgi-bin/user/get",
+         status_code: 200,
+         use_fixture: true
+       }
+  test "get/2", %{client: client} do
+    {:ok, body} = get(client)
+    assert %{"count" => _, "total" => _, "data" => %{}, "next_openid" => _} = body
   end
 
-  test "user list" do
-    use_cassette "user_get" do
-      result = User.get
-      assert Map.has_key?(result, "total")
-      assert Map.has_key?(result, "count")
-      assert Map.has_key?(result, "data")
-    end
+  @tag bypass_api: %{
+         method: "GET",
+         path: "/cgi-bin/user/info",
+         status_code: 200,
+         use_fixture: true
+       }
+  test "info/3", %{client: client} do
+    openid = "o6_bmjrPTlm6_2sgVt7hMZOPfL2M"
+    {:ok, body} = info(client, openid)
+    assert %{"openid" => ^openid, "nickname" => _} = body
   end
 
-  test "user info", %{openid: openid} do
-    use_cassette "user_info" do
-      result = User.info(openid)
-      assert result["openid"] == openid
-    end
-  end
-
-  test "update user remark", %{openid: openid} do
-    use_cassette "user_updateremark" do
-      result = User.update_remark(openid, "elixir man")
-      assert result["errcode"] == 0
-      assert result["errmsg"] == "ok"
-    end
+  @tag bypass_api: %{
+         method: "POST",
+         path: "/cgi-bin/user/info/updateremark",
+         status_code: 200,
+         use_fixture: true
+       }
+  test "update_remark/3", %{client: client} do
+    {:ok, body} = update_remark(client, "test_openid", "VIP")
+    assert %{"errcode" => 0, "errmsg" => "ok"} = body
   end
 end

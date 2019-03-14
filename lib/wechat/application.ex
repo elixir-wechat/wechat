@@ -5,9 +5,7 @@ defmodule Wechat.Application do
 
   def start(_type, _args) do
     children = [
-      {Wechat.Workers.AccessToken, []},
-      {Wechat.Workers.JSAPITicket, []},
-      {Task.Supervisor, [name: Wechat.TaskSupervisor]}
+      Wechat.Config.adapter()
     ]
 
     opts = [strategy: :one_for_one, name: Wechat.Supervisor]
