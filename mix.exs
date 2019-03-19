@@ -41,7 +41,7 @@ defmodule Wechat.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.13"},
+      {:httpoison, "~> 1.0"},
       {:jason, "~> 1.0"},
       {:redix, ">= 0.0.0", optional: true},
       {:bypass, "~> 1.0", only: :test},
