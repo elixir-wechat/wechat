@@ -1,14 +1,34 @@
-version: 2
+version: 2.0
+
+shared: &shared
+  working_directory: ~/repo
+  steps:
+    - checkout
+    - run: mix local.hex --force
+    - run: mix local.rebar --force
+    - run: mix deps.get --only test
+    - run: mix test
+
 jobs:
-  build:
+  "elixir-1.6":
+    <<: *shared
     docker:
       - image: circleci/elixir:1.6
 
-    working_directory: ~/repo
+  "elixir-1.7":
+    <<: *shared
+    docker:
+      - image: circleci/elixir:1.7
 
-    steps:
-      - checkout
-      - run: mix local.hex --force
-      - run: mix local.rebar --force
-      - run: mix deps.get --only test
-      - run: mix test
+  "elixir-1.8":
+    <<: *shared
+    docker:
+      - image: circleci/elixir:1.8
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "elixir-1.6"
+      - "elixir-1.7"
+      - "elixir-1.8"
