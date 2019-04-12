@@ -7,6 +7,7 @@ defmodule Wechat.Client do
 
   @endpoint "https://api.weixin.qq.com/"
 
+  @enforce_keys [:appid, :secret]
   defstruct appid: nil,
             secret: nil,
             token: nil,
@@ -23,7 +24,7 @@ defmodule Wechat.Client do
           access_token: binary | nil
         }
 
-  @doc ~S"""
+  @doc """
   Create client to consume Wechat API with config.
 
   ## Examples
@@ -50,7 +51,7 @@ defmodule Wechat.Client do
       |> ensure_trailing_slash()
 
     opts = Keyword.put(opts, :endpoint, endpoint)
-    struct(__MODULE__, opts)
+    struct!(__MODULE__, opts)
   end
 
   defp ensure_trailing_slash(endpoint) do
