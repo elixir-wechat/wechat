@@ -29,3 +29,76 @@ iex(2)> Wechat.User.get(client)
    "total" => 1
  }}
 ```
+
+## Plugs
+
+### Parse wechat message (in Phonenix controller)
+
+* config.exs
+
+  ```elixir
+  config :my_app, MyApp.Wechat,
+    appid: "APP_ID",
+    secret: "APP_SECRET",
+    token: "TOKEN",
+    encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
+  ```
+
+* my_app/wechat.ex
+
+  ```elixir
+  defmodule MyApp.Wechat do
+    use Wechat, otp_app: :beaver
+
+    def users do
+      client() |> Wechat.User.get()
+    end
+  end
+  ```
+
+* router.ex
+
+  ```elixir
+  defmodule MyApp.Router do
+    scope "/wechat", MyApp do
+      resources "/", WechatController, [:index, :create]
+    end
+  end
+  ```
+
+* wechat_controller.ex
+
+  ```elixir
+  defmodule MyApp.WechatController do
+    use MyApp.Web, :controller
+
+    plug Wechat.Plugs.RequestValidator, module: MyApp.Wechat
+    plug Wechat.Plugs.MessageParser, [module: MyApp.Wechat] when action in [:create]
+
+    def index(conn, %{"echostr" => echostr}) do
+      text conn, echostr
+    end
+
+    def create(conn, _params) do
+      msg = conn.body_params
+      reply = echo_reply(msg, msg["Content"])
+      render conn, "text.xml", reply: reply
+    end
+
+    defp echo_reply(%{"ToUserName" => to, "FromUserName" => from}, content) do
+      %{from: to, to: from, content: content}
+    end
+  end
+  ```
+
+* text.xml.eex
+
+  ```xml
+  <xml>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[<%= @reply.content %>]]></Content>
+    <ToUserName><![CDATA[<%= @reply.to %>]]></ToUserName>
+    <FromUserName><![CDATA[<%= @reply.from %>]]></FromUserName>
+    <CreateTime><%= DateTime.to_unix(DateTime.utc_now) %></CreateTime>
+  </xml>
+  ```
