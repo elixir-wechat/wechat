@@ -1,7 +1,7 @@
 defmodule Wechat.Base do
   @moduledoc false
 
-  import Wechat
+  alias Wechat.Request
 
   def token(client) do
     params = [
@@ -10,6 +10,6 @@ defmodule Wechat.Base do
       grant_type: :client_credential
     ]
 
-    raw_get(client, "cgi-bin/token", params: params)
+    Request.raw_get(client, "cgi-bin/token", params: params)
   end
 end
