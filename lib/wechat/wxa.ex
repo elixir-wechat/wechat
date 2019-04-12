@@ -5,8 +5,8 @@ defmodule Wechat.Wxa do
 
   def jscode2session(client, js_code) do
     params = [
-      appid: client.auth.appid,
-      secret: client.auth.secret,
+      appid: client.appid,
+      secret: client.secret,
       js_code: js_code,
       grant_type: :authorization_code
     ]

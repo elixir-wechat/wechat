@@ -16,10 +16,8 @@ Warning: 0.4.0 is a rewrite for APIs, don't upgrade if you are using 0.3.0.
 ```elixir
 iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
 %Wechat.Client{
-  auth: %{
-    appid: "WECHAT_APPID",
-    secret: "WECHAT_SECRET"
-  },
+  appid: "WECHAT_APPID",
+  secret: "WECHAT_SECRET",
   endpoint: "https://api.weixin.qq.com/"
 }
 iex(2)> Wechat.User.get(client)
@@ -31,4 +29,3 @@ iex(2)> Wechat.User.get(client)
    "total" => 1
  }}
 ```
-
