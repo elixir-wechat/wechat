@@ -43,6 +43,8 @@ defmodule Wechat.Mixfile do
     [
       {:httpoison, "~> 1.0"},
       {:jason, "~> 1.0"},
+      {:plug, "~> 1.7"},
+      {:sweet_xml, "~> 0.3"},
       {:redix, ">= 0.0.0", optional: true},
       {:bypass, "~> 1.0", only: :test},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false}
