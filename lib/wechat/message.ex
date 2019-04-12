@@ -1,7 +1,7 @@
 defmodule Wechat.Message do
   @moduledoc false
 
-  import Wechat
+  alias Wechat.Request
 
   @custom_message_types [
     :text,
@@ -18,7 +18,7 @@ defmodule Wechat.Message do
   def custom_send(client, openid, type, content)
       when type in @custom_message_types and is_map(content) do
     body = %{touser: openid, msgtype: type, "#{type}": content}
-    post(client, "cgi-bin/message/custom/send", body)
+    Request.post(client, "cgi-bin/message/custom/send", body)
   end
 
   def custom_send_text(client, openid, content) do
@@ -111,11 +111,14 @@ defmodule Wechat.Message do
   end
 
   def custom_typing_start(client, openid) do
-    post(client, "cgi-bin/message/custom/typing", %{touser: openid, command: "Typing"})
+    Request.post(client, "cgi-bin/message/custom/typing", %{touser: openid, command: "Typing"})
   end
 
   def custom_typing_cancel(client, openid) do
-    post(client, "cgi-bin/message/custom/typing", %{touser: openid, command: "CancelTyping"})
+    Request.post(client, "cgi-bin/message/custom/typing", %{
+      touser: openid,
+      command: "CancelTyping"
+    })
   end
 
   @doc """
@@ -135,6 +138,6 @@ defmodule Wechat.Message do
   """
   def template_send(client, openid, template_id, data, opts \\ []) when is_map(data) do
     body = Enum.into(opts, %{touser: openid, template_id: template_id, data: data})
-    post(client, "cgi-bin/message/template/send", body)
+    Request.post(client, "cgi-bin/message/template/send", body)
   end
 end
