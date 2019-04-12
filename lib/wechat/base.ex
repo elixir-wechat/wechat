@@ -5,8 +5,8 @@ defmodule Wechat.Base do
 
   def token(client) do
     params = [
-      appid: client.auth.appid,
-      secret: client.auth.secret,
+      appid: client.appid,
+      secret: client.secret,
       grant_type: :client_credential
     ]
 
