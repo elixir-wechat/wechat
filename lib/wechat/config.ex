@@ -6,6 +6,6 @@ defmodule Wechat.Config do
   end
 
   def adapter do
-    config()[:adapter] || Wechat.Adapter.Sandbox
+    config()[:adapter] || Wechat.Adapters.Sandbox
   end
 end

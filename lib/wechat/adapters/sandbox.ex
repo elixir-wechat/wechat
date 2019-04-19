@@ -1,4 +1,4 @@
-defmodule Wechat.Adapter.Sandbox do
+defmodule Wechat.Adapters.Sandbox do
   @moduledoc """
   Sandbox adapter, save data in local process, don't use it in production.
   """

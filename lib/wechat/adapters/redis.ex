@@ -1,5 +1,5 @@
 if Code.ensure_loaded?(Redix) do
-  defmodule Wechat.Adapter.Redis do
+  defmodule Wechat.Adapters.Redis do
     @moduledoc """
     Redis adapter, save data in redis.
 
