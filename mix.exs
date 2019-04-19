@@ -56,6 +56,7 @@ defmodule Wechat.Mixfile do
     [
       name: :wechat,
       licenses: ["MIT"],
+      exclude_patterns: [".DS_Store"],
       maintainers: ["goofansu"],
       links: %{"Github" => "https://github.com/elixir-wechat/wechat"}
     ]
