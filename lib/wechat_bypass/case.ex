@@ -11,7 +11,7 @@ if Code.ensure_loaded?(Bypass) do
       case setup_bypass_server(context) do
         {:ok, bypass} ->
           client = client(bypass)
-          onexit(client.auth)
+          onexit(client)
           [bypass: bypass, client: client]
 
         :error ->
@@ -29,8 +29,9 @@ if Code.ensure_loaded?(Bypass) do
 
     defp client(bypass) do
       Client.new(
-        %{appid: "test_appid", secret: "test_secret"},
-        "http://localhost:#{bypass.port}/"
+        appid: "test_appid",
+        secret: "test_secret",
+        endpoint: "http://localhost:#{bypass.port}"
       )
     end
 

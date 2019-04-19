@@ -5,37 +5,53 @@ defmodule Wechat.Client do
 
   alias Wechat.{AccessToken, Base, Config, Error}
 
-  defstruct auth: nil, endpoint: "https://api.weixin.qq.com/"
+  @endpoint "https://api.weixin.qq.com/"
 
-  @type auth :: %{appid: binary, secret: binary} | %{access_token: binary}
-  @type t :: %__MODULE__{auth: auth | nil, endpoint: binary}
+  @enforce_keys [:appid, :secret]
+  defstruct appid: nil,
+            secret: nil,
+            token: nil,
+            encoding_aes_key: nil,
+            endpoint: nil,
+            access_token: nil
 
-  @doc ~S"""
-  Create client to consume Wechat API with `auth`.
+  @type t :: %__MODULE__{
+          appid: binary | nil,
+          secret: binary | nil,
+          token: binary | nil,
+          encoding_aes_key: binary | nil,
+          endpoint: binary,
+          access_token: binary | nil
+        }
+
+  @doc """
+  Create client to consume Wechat API with config.
 
   ## Examples
 
-      iex> Wechat.Client.new(%{appid: "my_appid", secret: "my_secret"})
+      iex> Wechat.Client.new(appid: "my_appid", secret: "my_secret")
       %Wechat.Client{
-        auth: %{appid: "my_appid", secret: "my_secret"},
+        appid: "my_appid",
+        secret: "my_secret",
         endpoint: "https://api.weixin.qq.com/"
       }
 
-      iex> Wechat.Client.new(%{appid: "my_appid", secret: "my_secret"}, "http://localhost")
+      iex> Wechat.Client.new(appid: "my_appid", secret: "my_secret", endpoint: "http://localhost")
       %Wechat.Client{
-        auth: %{appid: "my_appid", secret: "my_secret"},
+        appid: "my_appid",
+        secret: "my_secret",
         endpoint: "http://localhost/"
       }
   """
-  @spec new(auth) :: t
-  def new(auth) do
-    %__MODULE__{auth: auth}
-  end
+  @spec new(Keyword.t()) :: t
+  def new(opts) do
+    endpoint =
+      opts
+      |> Keyword.get(:endpoint, @endpoint)
+      |> ensure_trailing_slash()
 
-  @spec new(auth, binary) :: t
-  def new(auth, endpoint) do
-    endpoint = ensure_trailing_slash(endpoint)
-    %__MODULE__{auth: auth, endpoint: endpoint}
+    opts = Keyword.put(opts, :endpoint, endpoint)
+    struct!(__MODULE__, opts)
   end
 
   defp ensure_trailing_slash(endpoint) do
@@ -51,8 +67,8 @@ defmodule Wechat.Client do
     case Base.token(client) do
       {:ok, body} ->
         token = AccessToken.new(body)
-        :ok = Config.adapter().write_token(client.auth.appid, token)
-        {:ok, %{client | auth: %{access_token: token.access_token}}}
+        :ok = Config.adapter().write_token(client.appid, token)
+        {:ok, %{client | access_token: token.access_token}}
 
       {:error, error} ->
         {:error, error}
@@ -69,7 +85,7 @@ defmodule Wechat.Client do
     end
   end
 
-  @spec access_token(auth) :: binary
+  @spec access_token(t) :: binary
   def access_token(%{access_token: access_token}), do: access_token
 
   def access_token(%{appid: appid}) do
