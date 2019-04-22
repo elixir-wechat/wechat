@@ -5,11 +5,6 @@ defmodule Wechat.Utils.MessageEncryptor do
 
   @aes_block_size 16
 
-  # get AES key from encoding_aes_key.
-  defp aes_key(encoding_aes_key) do
-    Base.decode64!(encoding_aes_key <> "=")
-  end
-
   @doc """
   Encrypt plain text by AES-CBC padded by PKCS#7.
   """
@@ -77,5 +72,10 @@ defmodule Wechat.Utils.MessageEncryptor do
       0 -> pad_block_size
       rem -> pad_block_size - rem
     end
+  end
+
+  # get AES key from encoding_aes_key.
+  defp aes_key(encoding_aes_key) do
+    Base.decode64!(encoding_aes_key <> "=")
   end
 end
