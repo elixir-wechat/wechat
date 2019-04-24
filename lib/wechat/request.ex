@@ -1,7 +1,7 @@
 defmodule Wechat.Request do
   @moduledoc false
 
-  alias Wechat.{Client, Error}
+  alias Wechat.{Client, Config, Error}
 
   @access_token_errcodes [40001, 40014, 41001, 42001]
 
@@ -40,8 +40,10 @@ defmodule Wechat.Request do
         _ -> false
       end
 
+    httpoison_opts = Keyword.merge(opts, Config.httpoison_opts())
+
     result =
-      HTTPoison.request!(method, url, body, [], opts)
+      HTTPoison.request!(method, url, body, [], httpoison_opts)
       |> process_response()
 
     case result do

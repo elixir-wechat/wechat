@@ -7,5 +7,8 @@ defmodule Wechat.Config do
 
   def adapter do
     config()[:adapter] || Wechat.Adapters.Sandbox
+
+  def httpoison_opts do
+    Application.get_env(:wechat, :httpoison_opts, [])
   end
 end
