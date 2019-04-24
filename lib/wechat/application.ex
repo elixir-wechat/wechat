@@ -5,7 +5,7 @@ defmodule Wechat.Application do
 
   def start(_type, _args) do
     children = [
-      Wechat.Config.adapter()
+      Wechat.Config.adapter_opts()
     ]
 
     opts = [strategy: :one_for_one, name: Wechat.Supervisor]

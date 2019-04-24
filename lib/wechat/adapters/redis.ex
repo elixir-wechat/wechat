@@ -11,23 +11,17 @@ if Code.ensure_loaded?(Redix) do
     ```
     """
 
-    import Wechat.Config
-
     @behaviour Wechat.Adapter
 
-    def child_spec(opts) do
+    def child_spec(arg) do
       %{
         id: __MODULE__,
-        start: {__MODULE__, :start_link, [opts]},
-        type: :worker,
-        restart: :permanent,
-        shutdown: 500
+        start: {__MODULE__, :start_link, [arg]},
       }
     end
 
-    def start_link(_) do
-      redis_url = config()[:redis_url]
-      Redix.start_link(redis_url, name: __MODULE__)
+    def start_link([redis_uri]) do
+      Redix.start_link(redis_uri, name: __MODULE__)
     end
 
     @impl true
