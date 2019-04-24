@@ -30,6 +30,13 @@ iex(2)> Wechat.User.get(client)
  }}
 ```
 
+## Config
+```elixir
+config :wechat,
+  adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
+  httpoison_opts: [recv_timeout: 300_000]
+```
+
 ## Plugs
 
 ### Parse wechat message (in Phonenix controller)
