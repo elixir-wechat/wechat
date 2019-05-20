@@ -16,7 +16,7 @@ if Code.ensure_loaded?(Redix) do
     def child_spec(arg) do
       %{
         id: __MODULE__,
-        start: {__MODULE__, :start_link, [arg]},
+        start: {__MODULE__, :start_link, [arg]}
       }
     end
 
