@@ -15,11 +15,6 @@ defmodule Wechat.Utils.SignatureVerifier do
     args
     |> Enum.sort()
     |> Enum.join()
-    |> sha1
-  end
-
-  defp sha1(str) do
-    digest = :crypto.hash(:sha, str)
-    Base.encode16(digest, case: :lower)
+    |> Wechat.Util.sha1()
   end
 end
