@@ -86,12 +86,12 @@ defmodule Wechat.Client do
   end
 
   @spec access_token(t) :: binary
-  def access_token(%{access_token: access_token}), do: access_token
-
-  def access_token(%{appid: appid}) do
+  def access_token(%{access_token: nil, appid: appid}) do
     case Config.adapter().read_token(appid) do
       {:ok, token} -> token.access_token
       :error -> ""
     end
   end
+
+  def access_token(%{access_token: access_token}), do: access_token
 end

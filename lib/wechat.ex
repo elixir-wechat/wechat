@@ -44,6 +44,10 @@ defmodule Wechat do
       def client do
         Wechat.Client.new(config())
       end
+
+      def access_token do
+        Wechat.Client.access_token(client())
+      end
     end
   end
 end
