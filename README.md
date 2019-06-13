@@ -13,7 +13,15 @@ def deps do
 end
 ```
 
+## Config (optional)
+```elixir
+config :wechat,
+  adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
+  httpoison_opts: [recv_timeout: 300_000]
+```
+
 ## Usage
+
 ```elixir
 iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
 %Wechat.Client{
@@ -21,6 +29,7 @@ iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECR
   secret: "WECHAT_SECRET",
   endpoint: "https://api.weixin.qq.com/"
 }
+
 iex(2)> Wechat.User.get(client)
 {:ok,
  %{
@@ -31,26 +40,9 @@ iex(2)> Wechat.User.get(client)
  }}
 ```
 
-## Config
-```elixir
-config :wechat,
-  adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
-  httpoison_opts: [recv_timeout: 300_000]
-```
+The more common usage is to implement the `Wechat` module by `use` it.
 
-## Plugs
-
-### Parse wechat message (in Phonenix controller)
-
-* config.exs
-
-  ```elixir
-  config :my_app, MyApp.Wechat,
-    appid: "APP_ID",
-    secret: "APP_SECRET",
-    token: "TOKEN",
-    encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
-  ```
+## Implementation
 
 * my_app/wechat.ex
 
@@ -64,6 +56,40 @@ config :wechat,
   end
   ```
 
+* config.exs
+
+  ```elixir
+  config :my_app, MyApp.Wechat,
+    appid: "APP_ID",
+    secret: "APP_SECRET",
+    token: "TOKEN",
+    encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
+  ```
+
+### Use JSAPI
+```elixir
+<script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<%= raw MyApp.Wechat.wechat_config_js(@conn, debug: false, api: ~w(previewImage closeWindow)) %>
+
+<script>
+$(function() {
+  var urls = [];
+  $('img').map(function(){
+    url = window.location.origin + $(this).attr('src'),
+    urls.push(url);
+  });
+
+  $('img').click(function(e) {
+    wx.previewImage({
+      current: window.location.origin + $(this).attr('src'),
+      urls: urls
+    });
+  })
+});
+</script>
+```
+
+### Process pushed message (in Phoenix application)
 * router.ex
 
   ```elixir
@@ -80,7 +106,10 @@ config :wechat,
   defmodule MyApp.WechatController do
     use MyApp.Web, :controller
 
+    # Validate signature param
     plug Wechat.Plugs.RequestValidator, module: MyApp.Wechat
+    
+    # Parse message
     plug Wechat.Plugs.MessageParser, [module: MyApp.Wechat] when action in [:create]
 
     def index(conn, %{"echostr" => echostr}) do
@@ -88,13 +117,19 @@ config :wechat,
     end
 
     def create(conn, _params) do
-      msg = conn.body_params
-      reply = echo_reply(msg, msg["Content"])
-      render conn, "text.xml", reply: reply
-    end
+      %{"ToUserName" => to, "FromUserName" => from, "Content" => content} = conn.body_params
+      reply = %{from: to, to: from, content: content}
 
-    defp echo_reply(%{"ToUserName" => to, "FromUserName" => from}, content) do
-      %{from: to, to: from, content: content}
+      msg = Phoenix.View.render_to_string(EvercamWechatWeb.WechatView, "text.xml", reply: reply)
+
+      # Return encrypted message if possible
+      case Wechat.encrypt_message(msg) do
+        {:ok, reply} ->
+          render(conn, "encrypt.xml", reply: reply)
+
+        {:error, _} ->
+          text(conn, msg)
+      end
     end
   end
   ```
@@ -108,6 +143,16 @@ config :wechat,
     <ToUserName><![CDATA[<%= @reply.to %>]]></ToUserName>
     <FromUserName><![CDATA[<%= @reply.from %>]]></FromUserName>
     <CreateTime><%= DateTime.to_unix(DateTime.utc_now) %></CreateTime>
+  </xml>
+  ```
+  
+* encrypt.xml.eex
+  ```xml
+  <xml>
+    <Encrypt><![CDATA[<%= @reply.msg_encrypt %>]]></Encrypt>
+    <MsgSignature><![CDATA[<%= @reply.msg_signature %>]]></MsgSignature>
+    <TimeStamp><%= @reply.timestamp %></TimeStamp>
+    <Nonce><![CDATA[<%= @reply.nonce %>]]></Nonce>
   </xml>
   ```
 
