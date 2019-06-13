@@ -13,8 +13,6 @@ def deps do
 end
 ```
 
-Warning: 0.4.0 is a rewrite for APIs, don't upgrade if you are using 0.3.0.
-
 ## Usage
 ```elixir
 iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
@@ -112,3 +110,7 @@ config :wechat,
     <CreateTime><%= DateTime.to_unix(DateTime.utc_now) %></CreateTime>
   </xml>
   ```
+
+## Users
+
+* [evercam_wechat](https://github.com/evercam/evercam_wechat)
