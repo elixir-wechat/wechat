@@ -7,4 +7,8 @@ defmodule Wechat.Util do
     digest = :crypto.hash(:sha, str)
     Base.encode16(digest, case: :lower)
   end
+
+  def nonce do
+    Base.url_encode64(:crypto.strong_rand_bytes(32), padding: false)
+  end
 end

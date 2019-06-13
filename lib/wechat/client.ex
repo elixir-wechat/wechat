@@ -4,6 +4,7 @@ defmodule Wechat.Client do
   """
 
   alias Wechat.{AccessToken, Base, Config, Error}
+  alias Wechat.Utils.{MessageEncryptor, SignatureVerifier}
 
   @endpoint "https://api.weixin.qq.com/"
 
@@ -94,4 +95,49 @@ defmodule Wechat.Client do
   end
 
   def access_token(%{access_token: access_token}), do: access_token
+
+  @doc """
+  Sign jsapi with url.
+  """
+  @spec sign_jsapi(t, :binary) :: map
+  def sign_jsapi(client, url) do
+    {:ok, %{"ticket" => ticket}} = Wechat.Ticket.get_ticket(client, :jsapi)
+    timestamp = Wechat.Util.unix_now()
+    nonce = Wechat.Util.nonce()
+
+    params = %{jsapi_ticket: ticket, noncestr: nonce, timestamp: timestamp, url: url}
+
+    signature =
+      params
+      |> Enum.map(fn {k, v} -> "#{k}=#{v}" end)
+      |> Enum.join("&")
+      |> Wechat.Util.sha1()
+
+    Map.put(params, :signature, signature)
+  end
+
+  @doc """
+  Encrypt message with encoding_aes_key.
+  """
+  def encrypt_message(client, msg) do
+    if client.encoding_aes_key do
+      %{appid: appid, token: token, encoding_aes_key: encoding_aes_key} = client
+      msg_encrypt = MessageEncryptor.encrypt(msg, appid, encoding_aes_key)
+      timestamp = Wechat.Util.unix_now()
+      nonce = Wechat.Util.nonce()
+
+      msg_signature = SignatureVerifier.sign([token, timestamp, nonce, msg_encrypt])
+
+      reply = %{
+        msg_encrypt: msg_encrypt,
+        msg_signature: msg_signature,
+        timestamp: timestamp,
+        nonce: nonce
+      }
+
+      {:ok, reply}
+    else
+      {:error, msg}
+    end
+  end
 end
