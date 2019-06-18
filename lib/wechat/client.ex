@@ -140,4 +140,26 @@ defmodule Wechat.Client do
       {:error, msg}
     end
   end
+
+  @doc """
+  Configure JS-SDK.
+  """
+  def wechat_config_js(client, url, opts) do
+    debug = Keyword.get(opts, :debug, false)
+    js_api_list = opts |> Keyword.get(:api, []) |> Enum.join(",")
+    %{timestamp: timestamp, noncestr: nonce, signature: signature} = sign_jsapi(client, url)
+
+    """
+    <script type="text/javascript">
+      wx.config({
+        debug: #{debug},
+        jsApiList: ['#{js_api_list}'],
+        appId: '#{client.appid}',
+        timestamp: '#{timestamp}',
+        nonceStr: '#{nonce}',
+        signature: '#{signature}'
+      });
+    </script>
+    """
+  end
 end

@@ -55,29 +55,9 @@ defmodule Wechat do
 
       if Code.ensure_loaded?(Phoenix.Controller) do
         def wechat_config_js(conn, opts \\ []) do
-          client = client()
-
           import Phoenix.Controller, only: [current_url: 1]
-          page_url = current_url(conn)
 
-          debug = Keyword.get(opts, :debug, false)
-          js_api_list = opts |> Keyword.get(:api, []) |> Enum.join(",")
-
-          %{timestamp: timestamp, noncestr: nonce, signature: signature} =
-            Wechat.Client.sign_jsapi(client, page_url)
-
-          """
-          <script type="text/javascript">
-            wx.config({
-              debug: #{debug},
-              jsApiList: ['#{js_api_list}'],
-              appId: '#{client.appid}',
-              timestamp: '#{timestamp}',
-              nonceStr: '#{nonce}',
-              signature: '#{signature}'
-            });
-          </script>
-          """
+          Wechat.Client.wechat_config_js(client(), current_url(conn), opts)
         end
       end
     end
