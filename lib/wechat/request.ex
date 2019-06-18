@@ -3,7 +3,7 @@ defmodule Wechat.Request do
 
   alias Wechat.{Client, Config, Error}
 
-  @access_token_errcodes [40001, 40014, 41001, 42001]
+  @access_token_errcodes [40_001, 40_014, 41_001, 42_001]
 
   def get(client, path, opts \\ []) do
     do_request(client, :get, path, "", opts)
@@ -101,13 +101,11 @@ defmodule Wechat.Request do
   defp content_type([]), do: ""
 
   defp content_type([{key, value} | t]) do
-    cond do
-      String.match?(key, ~r/content-type/i) ->
-        [content_type | _] = String.split(value, ";")
-        content_type
-
-      true ->
-        content_type(t)
+    if String.match?(key, ~r/content-type/i) do
+      [content_type | _] = String.split(value, ";")
+      content_type
+    else
+      content_type(t)
     end
   end
 end

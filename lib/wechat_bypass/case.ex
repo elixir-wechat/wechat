@@ -4,7 +4,7 @@ if Code.ensure_loaded?(Bypass) do
 
     use ExUnit.CaseTemplate
 
-    alias Wechat.{Config, Client, AccessToken}
+    alias Wechat.{AccessToken, Client, Config}
     alias WechatBypass.Assertion
 
     setup context do

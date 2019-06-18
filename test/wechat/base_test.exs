@@ -22,7 +22,7 @@ defmodule Wechat.BaseTest do
        }
   test "token/1 returns API error", %{client: client} do
     {:error, error} = token(client)
-    assert %{type: :api, code: 40001, reason: "access_token expired"} = error
+    assert %{type: :api, code: 40_001, reason: "access_token expired"} = error
   end
 
   @tag bypass_api: %{
