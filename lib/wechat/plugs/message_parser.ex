@@ -11,15 +11,12 @@ defmodule Wechat.Plugs.MessageParser do
 
   def init(opts) do
     module = Keyword.fetch!(opts, :module)
-    config = apply(module, :config, [])
-
-    appid = Keyword.fetch!(config, :appid)
-    token = Keyword.fetch!(config, :token)
-    encoding_aes_key = Keyword.get(config, :encoding_aes_key)
-    %{appid: appid, token: token, encoding_aes_key: encoding_aes_key}
+    %{module: module}
   end
 
-  def call(%{method: "POST"} = conn, config) do
+  def call(%{method: "POST"} = conn, %{module: module}) do
+    config = apply(module, :config, [])
+
     conn
     |> read_body()
     |> decode(config)

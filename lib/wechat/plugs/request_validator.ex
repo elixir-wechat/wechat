@@ -7,13 +7,13 @@ defmodule Wechat.Plugs.RequestValidator do
 
   def init(opts) do
     module = Keyword.fetch!(opts, :module)
-    config = apply(module, :config, [])
-
-    token = Keyword.fetch!(config, :token)
-    %{token: token}
+    %{module: module}
   end
 
-  def call(conn, %{token: token}) do
+  def call(conn, module) do
+    config = apply(module, :config, [])
+    token = Keyword.fetch!(config, :token)
+
     conn = fetch_query_params(conn)
     %{"timestamp" => timestamp, "nonce" => nonce, "signature" => signature} = conn.query_params
 
