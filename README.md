@@ -14,4 +14,141 @@ def deps do
 end
 ```
 
-[Document](https://www.notion.so/Document-1e9374e80be64092a7dd5d928eba071d)
+## Configuration (optional)
+
+    config :wechat,
+      adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
+      httpoison_opts: [recv_timeout: 300_000]
+
+## Create a client to call APIs
+
+    iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
+    %Wechat.Client{
+      appid: "WECHAT_APPID",
+      secret: "WECHAT_SECRET",
+      endpoint: "https://api.weixin.qq.com/"
+    }
+    
+    iex(2)> Wechat.User.get(client)
+    {:ok,
+     %{
+       "count" => 1,
+       "data" => %{"openid" => ["oi00OuKAhA8bm5okpaIDs7WmUZr4"]},
+       "next_openid" => "oi00OuKAhA8bm5okpaIDs7WmUZr4",
+       "total" => 1
+     }}
+
+## Create a Wechat implementation
+
+You can implement the `Wechat` module to simplify the usage.
+
+First, create an implementation by `use Wechat` :
+
+    defmodule MyApp.Wechat do
+      use Wechat, otp_app: :my_app
+      
+      def users do
+        client() |> Wechat.User.get()
+      end
+    end
+
+Config the implementation with Wechat credentials:
+
+    config :my_app, MyApp.Wechat,
+      appid: "APP_ID",
+      secret: "APP_SECRET",
+      token: "TOKEN",
+      encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
+
+## Wechat implementation examples
+
+### JS-SDK
+
+[https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html)
+
+    <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <%= raw MyApp.Wechat.wechat_config_js(@conn, debug: false, api: ~w(previewImage closeWindow)) %>
+    
+    <script>
+    $(function() {
+      var urls = [];
+      $('img').map(function(){
+        url = window.location.origin + $(this).attr('src'),
+        urls.push(url);
+      });
+    
+      $('img').click(function(e) {
+        wx.previewImage({
+          current: window.location.origin + $(this).attr('src'),
+          urls: urls
+        });
+      })
+    });
+    </script>
+
+### Process message in Phoenix
+
+[https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html](https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html)
+
+- router.ex
+```elixir
+defmodule MyApp.Router do
+  scope "/wechat", MyApp do
+    resources "/", WechatController, [:index, :create]
+  end
+end
+```
+
+- wechat_controller.ex
+```elixir
+defmodule MyApp.WechatController do
+  use MyApp.Web, :controller
+
+  # Validate signature param
+  plug Wechat.Plugs.RequestValidator, module: MyApp.Wechat
+
+  # Parse message
+  plug Wechat.Plugs.MessageParser, [module: MyApp.Wechat] when action in [:create]
+
+  def index(conn, %{"echostr" => echostr}) do
+    text conn, echostr
+  end
+
+  def create(conn, _params) do
+    %{"ToUserName" => to, "FromUserName" => from, "Content" => content} = conn.body_params
+    reply = %{from: to, to: from, content: content}
+
+    msg = Phoenix.View.render_to_string(EvercamWechatWeb.WechatView, "text.xml", reply: reply)
+
+    # Return encrypted message if possible
+    case Wechat.encrypt_message(msg) do
+      {:ok, reply} ->
+        render(conn, "encrypt.xml", reply: reply)
+
+      {:error, _} ->
+        text(conn, msg)
+    end
+  end
+end
+```
+
+- text.xml.eex
+```xml
+<xml>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[<%= @reply.content %>]]></Content>
+  <ToUserName><![CDATA[<%= @reply.to %>]]></ToUserName>
+  <FromUserName><![CDATA[<%= @reply.from %>]]></FromUserName>
+  <CreateTime><%= DateTime.to_unix(DateTime.utc_now) %></CreateTime>
+</xml>
+```
+
+- encrypt.xml.eex
+```xml
+<xml>
+  <Encrypt><![CDATA[<%= @reply.msg_encrypt %>]]></Encrypt>
+  <MsgSignature><![CDATA[<%= @reply.msg_signature %>]]></MsgSignature>
+  <TimeStamp><%= @reply.timestamp %></TimeStamp>
+  <Nonce><![CDATA[<%= @reply.nonce %>]]></Nonce>
+</xml>
+```
