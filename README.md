@@ -16,27 +16,31 @@ end
 
 ## Configuration (optional)
 
-    config :wechat,
-      adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
-      httpoison_opts: [recv_timeout: 300_000]
+```elixir
+config :wechat,
+  adapter_opts: {Wechat.Adapters.Redis, ["redis://localhost:6379/0"]},
+  httpoison_opts: [recv_timeout: 300_000]
+```
 
 ## Create a client to call APIs
 
-    iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
-    %Wechat.Client{
-      appid: "WECHAT_APPID",
-      secret: "WECHAT_SECRET",
-      endpoint: "https://api.weixin.qq.com/"
-    }
-    
-    iex(2)> Wechat.User.get(client)
-    {:ok,
-     %{
-       "count" => 1,
-       "data" => %{"openid" => ["oi00OuKAhA8bm5okpaIDs7WmUZr4"]},
-       "next_openid" => "oi00OuKAhA8bm5okpaIDs7WmUZr4",
-       "total" => 1
-     }}
+```elixir
+iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
+%Wechat.Client{
+  appid: "WECHAT_APPID",
+  secret: "WECHAT_SECRET",
+  endpoint: "https://api.weixin.qq.com/"
+}
+
+iex(2)> Wechat.User.get(client)
+{:ok,
+  %{
+    "count" => 1,
+    "data" => %{"openid" => ["oi00OuKAhA8bm5okpaIDs7WmUZr4"]},
+    "next_openid" => "oi00OuKAhA8bm5okpaIDs7WmUZr4",
+    "total" => 1
+  }}
+```
 
 ## Create a Wechat implementation
 
@@ -44,21 +48,25 @@ You can implement the `Wechat` module to simplify the usage.
 
 First, create an implementation by `use Wechat` :
 
-    defmodule MyApp.Wechat do
-      use Wechat, otp_app: :my_app
-      
-      def users do
-        client() |> Wechat.User.get()
-      end
-    end
+```elixir
+defmodule MyApp.Wechat do
+  use Wechat, otp_app: :my_app
+
+  def users do
+    client() |> Wechat.User.get()
+  end
+end
+```
 
 Config the implementation with Wechat credentials:
 
-    config :my_app, MyApp.Wechat,
-      appid: "APP_ID",
-      secret: "APP_SECRET",
-      token: "TOKEN",
-      encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
+```elixir
+config :my_app, MyApp.Wechat,
+  appid: "APP_ID",
+  secret: "APP_SECRET",
+  token: "TOKEN",
+  encoding_aes_key: "ENCODING_AES_KEY" # Required if you enabled the encrypt mode
+```
 
 ## Wechat implementation examples
 
@@ -66,31 +74,34 @@ Config the implementation with Wechat credentials:
 
 [https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html)
 
-    <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-    <%= raw MyApp.Wechat.wechat_config_js(@conn, debug: false, api: ~w(previewImage closeWindow)) %>
-    
-    <script>
-    $(function() {
-      var urls = [];
-      $('img').map(function(){
-        url = window.location.origin + $(this).attr('src'),
-        urls.push(url);
-      });
-    
-      $('img').click(function(e) {
-        wx.previewImage({
-          current: window.location.origin + $(this).attr('src'),
-          urls: urls
-        });
-      })
+```html
+<script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<%= raw MyApp.Wechat.wechat_config_js(@conn, debug: false, api: ~w(previewImage closeWindow)) %>
+
+<script>
+$(function() {
+  var urls = [];
+  $('img').map(function(){
+    url = window.location.origin + $(this).attr('src'),
+    urls.push(url);
+  });
+
+  $('img').click(function(e) {
+    wx.previewImage({
+      current: window.location.origin + $(this).attr('src'),
+      urls: urls
     });
-    </script>
+  })
+});
+</script>
+```
 
 ### Process message in Phoenix
 
 [https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html](https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html)
 
 - router.ex
+
 ```elixir
 defmodule MyApp.Router do
   scope "/wechat", MyApp do
@@ -100,6 +111,7 @@ end
 ```
 
 - wechat_controller.ex
+
 ```elixir
 defmodule MyApp.WechatController do
   use MyApp.Web, :controller
@@ -133,6 +145,7 @@ end
 ```
 
 - text.xml.eex
+
 ```xml
 <xml>
   <MsgType><![CDATA[text]]></MsgType>
@@ -144,6 +157,7 @@ end
 ```
 
 - encrypt.xml.eex
+
 ```xml
 <xml>
   <Encrypt><![CDATA[<%= @reply.msg_encrypt %>]]></Encrypt>
