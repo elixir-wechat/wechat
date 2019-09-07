@@ -10,11 +10,6 @@ shared: &shared
     - run: mix test
 
 jobs:
-  "elixir-1.6":
-    <<: *shared
-    docker:
-      - image: circleci/elixir:1.6
-
   "elixir-1.7":
     <<: *shared
     docker:
@@ -25,10 +20,15 @@ jobs:
     docker:
       - image: circleci/elixir:1.8
 
+  "elixir-1.9":
+    <<: *shared
+    docker:
+      - image: circleci/elixir:1.9
+
 workflows:
   version: 2
   build:
     jobs:
-      - "elixir-1.6"
       - "elixir-1.7"
       - "elixir-1.8"
+      - "elixir-1.9"
