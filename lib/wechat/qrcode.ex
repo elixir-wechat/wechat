@@ -1,10 +1,12 @@
 defmodule Wechat.QRCode do
-  @moduledoc false
+  @moduledoc """
+  QRCode APIs.
+  """
 
   alias Wechat.Request
 
   @doc """
-  生成带参数的二维码
+  Create qrcode with scene and expire time.
   """
   def create(client, scene_id, expire_seconds) when is_integer(scene_id) do
     Request.post(client, "cgi-bin/qrcode/create", %{

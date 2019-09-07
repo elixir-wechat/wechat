@@ -1,5 +1,7 @@
 defmodule Wechat.Message do
-  @moduledoc false
+  @moduledoc """
+  Message APIs.
+  """
 
   alias Wechat.Request
 
@@ -15,30 +17,42 @@ defmodule Wechat.Message do
     :miniprogrampage
   ]
 
+  @doc """
+  Send custom message by type.
+  """
   def custom_send(client, openid, type, content)
       when type in @custom_message_types and is_map(content) do
     body = %{touser: openid, msgtype: type, "#{type}": content}
     Request.post(client, "cgi-bin/message/custom/send", body)
   end
 
+  @doc """
+  Send text message.
+  """
   def custom_send_text(client, openid, content) do
     custom_send(client, openid, :text, %{content: content})
   end
 
+  @doc """
+  Send image message.
+  """
   def custom_send_image(client, openid, media_id) do
     custom_send(client, openid, :image, %{media_id: media_id})
   end
 
+  @doc """
+  Send voice message.
+  """
   def custom_send_voice(client, openid, media_id) do
     custom_send(client, openid, :voice, %{media_id: media_id})
   end
 
   @doc """
-  发送视频消息
+  Send video message.
 
   `opts`:
-  title: 标题
-  description: 描述
+  title: Video title.
+  description: Video description.
   """
   def custom_send_video(client, openid, media_id, thumb_media_id, opts \\ []) do
     content = Enum.into(opts, %{media_id: media_id, thumb_media_id: thumb_media_id})
@@ -46,11 +60,11 @@ defmodule Wechat.Message do
   end
 
   @doc """
-  发送音乐消息
+  Send music message.
 
   `opts`:
-  title: 标题
-  description: 描述
+  title: Music title.
+  description: Music description.
   """
   def custom_send_music(client, openid, musicurl, hqmusicurl, thumb_media_id, opts \\ []) do
     content =
@@ -96,7 +110,7 @@ defmodule Wechat.Message do
   end
 
   @doc """
-  发送迷你小程序
+  发送小程序
 
   `content`: %{
     title: "title",
@@ -122,6 +136,8 @@ defmodule Wechat.Message do
   end
 
   @doc """
+  Send template message.
+
   `data`: %{ // 模版数据
     key: %{ // 模版中的key
       value: // 对应的value
@@ -130,11 +146,11 @@ defmodule Wechat.Message do
   }
 
   `opts`:
-  url: 模板跳转链接（海外帐号没有跳转能力）
-  miniprogram: %{ // 跳小程序所需数据，不需跳小程序可不用传该数据
-    appid: "xiaochengxuappid12345" // 所需跳转到的小程序appid,
-    pagepath: "index?foo=bar" // 所需跳转到小程序的具体页面路径，支持带参数
-  }
+    url: 模板跳转链接（海外帐号没有跳转能力）
+    miniprogram: %{ // 跳小程序所需数据，不需跳小程序可不用传该数据
+      appid: "xiaochengxuappid12345" // 所需跳转到的小程序appid,
+      pagepath: "index?foo=bar" // 所需跳转到小程序的具体页面路径，支持带参数
+    }
   """
   def template_send(client, openid, template_id, data, opts \\ []) when is_map(data) do
     body = Enum.into(opts, %{touser: openid, template_id: template_id, data: data})

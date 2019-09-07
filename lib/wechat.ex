@@ -21,7 +21,7 @@ defmodule Wechat do
       end
   """
 
-  alias Wechat.Client
+  alias Wechat.{Client, Request}
 
   @callback client() :: Client.t()
 
@@ -61,5 +61,18 @@ defmodule Wechat do
         end
       end
     end
+  end
+
+  @doc """
+  Get access token.
+  """
+  def token(client) do
+    params = [
+      appid: client.appid,
+      secret: client.secret,
+      grant_type: :client_credential
+    ]
+
+    Request.raw_get(client, "cgi-bin/token", params: params)
   end
 end

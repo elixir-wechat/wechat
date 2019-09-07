@@ -1,5 +1,8 @@
 defmodule Wechat.Wxa do
-  @moduledoc false
+  @moduledoc """
+  Mini program server APIs.
+  https://developers.weixin.qq.com/miniprogram/dev/api-backend/
+  """
 
   alias Wechat.Request
 

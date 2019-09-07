@@ -1,10 +1,18 @@
 defmodule Wechat.Plugs.RequestValidator do
-  @moduledoc false
+  @moduledoc """
+  A plug to verify the `signature` param in WeChat pushed URL.
+  """
 
   import Plug.Conn
 
   alias Wechat.Utils.SignatureVerifier
 
+  @doc """
+  Plug init callback.
+
+  ## Example
+      plug Wechat.Plugs.RequestValidator, module: MyApp.Wechat
+  """
   def init(opts) do
     module = Keyword.fetch!(opts, :module)
     %{module: module}

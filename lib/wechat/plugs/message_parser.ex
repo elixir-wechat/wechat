@@ -1,5 +1,7 @@
 defmodule Wechat.Plugs.MessageParser do
-  @moduledoc false
+  @moduledoc """
+  A plug to parse the message pushed by WeChat server.
+  """
 
   defmodule ParseError do
     defexception [:message]
@@ -9,6 +11,12 @@ defmodule Wechat.Plugs.MessageParser do
 
   alias Wechat.Utils.{MessageEncryptor, SignatureVerifier, XMLParser}
 
+  @doc """
+  Plug init callback.
+
+  ## Example
+      plug Wechat.Plugs.MessageParser, [module: MyApp.Wechat]
+  """
   def init(opts) do
     module = Keyword.fetch!(opts, :module)
     %{module: module}

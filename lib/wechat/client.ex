@@ -3,7 +3,7 @@ defmodule Wechat.Client do
   `Client` represents an API client.
   """
 
-  alias Wechat.{AccessToken, Base, Config, Error}
+  alias Wechat.{AccessToken, Config, Error}
   alias Wechat.Utils.{MessageEncryptor, SignatureVerifier}
 
   @endpoint "https://api.weixin.qq.com/"
@@ -28,7 +28,7 @@ defmodule Wechat.Client do
   @doc """
   Create client to consume Wechat API with config.
 
-  ## Examples
+  ## Example
 
       iex> Wechat.Client.new(appid: "my_appid", secret: "my_secret")
       %Wechat.Client{
@@ -65,7 +65,7 @@ defmodule Wechat.Client do
 
   @spec get_token(t) :: {:ok, t} | {:error, Error.t()}
   def get_token(client) do
-    case Base.token(client) do
+    case Wechat.token(client) do
       {:ok, body} ->
         token = AccessToken.new(body)
         :ok = Config.adapter().write_token(client.appid, token)
