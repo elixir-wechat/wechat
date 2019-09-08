@@ -166,3 +166,7 @@ end
   <Nonce><![CDATA[<%= @reply.nonce %>]]></Nonce>
 </xml>
 ```
+
+## Users
+
+* [evercam_wechat](https://github.com/evercam/evercam_wechat)
