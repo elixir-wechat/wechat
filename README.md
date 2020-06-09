@@ -25,7 +25,7 @@ config :wechat,
 ## Create a client to call APIs
 
 ```elixir
-iex(1)> client = Wechat.Client.new(%{appid: "WECHAT_APPID", secret: "WECHAT_SECRET"})
+iex(1)> client = Wechat.Client.new(appid: "WECHAT_APPID", secret: "WECHAT_SECRET")
 %Wechat.Client{
   appid: "WECHAT_APPID",
   secret: "WECHAT_SECRET",
