@@ -18,7 +18,7 @@ defmodule Wechat.Plugs.RequestValidator do
     %{module: module}
   end
 
-  def call(conn, module) do
+  def call(conn, %{module: module}) do
     config = apply(module, :config, [])
     token = Keyword.fetch!(config, :token)
 
