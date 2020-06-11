@@ -56,7 +56,9 @@ defmodule Wechat.Plugs.MessageParser do
       |> halt()
   end
 
-  defp verify_msg_signature(conn, msg, %{token: token}) do
+  defp verify_msg_signature(conn, msg, config) do
+    token = Keyword.fetch!(config, :token)
+
     %{"timestamp" => timestamp, "nonce" => nonce, "msg_signature" => signature} =
       conn.query_params
 
@@ -71,13 +73,10 @@ defmodule Wechat.Plugs.MessageParser do
     end
   end
 
-  defp decrypt(msg_encrypted, config)
+  defp decrypt(msg_encrypted, config) do
+    appid = Keyword.fetch!(config, :appid)
+    encoding_aes_key = Keyword.fetch!(config, :encoding_aes_key)
 
-  defp decrypt(_, %{encoding_aes_key: nil}) do
-    raise ParseError, "Missing :encoding_aes_key in config"
-  end
-
-  defp decrypt(msg_encrypted, %{appid: appid, encoding_aes_key: encoding_aes_key}) do
     case MessageEncryptor.decrypt(msg_encrypted, encoding_aes_key) do
       {^appid, msg_decrypted} ->
         XMLParser.parse(msg_decrypted)
