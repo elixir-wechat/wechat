@@ -1,8 +1,8 @@
 # Wechat
 Wechat API wrapper in Elixir.
 
-[![CircleCI](https://circleci.com/gh/elixir-wechat/wechat.svg?style=svg)](https://circleci.com/gh/elixir-wechat/wechat)
-[![codebeat badge](https://codebeat.co/badges/64e7b266-e8f7-428c-8ab1-22a7bf64116a)](https://codebeat.co/projects/github-com-elixir-wechat-wechat-master)
+[![CI](https://github.com/elixir-wechat/wechat/workflows/CI/badge.svg?branch=master)](https://github.com/elixir-wechat/wechat/actions?query=workflow%3ACI)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/77647226650842c4b226a38d9bd1e090)](https://www.codacy.com/gh/elixir-wechat/wechat?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elixir-wechat/wechat&amp;utm_campaign=Badge_Grade)
 [![Hex.pm](https://img.shields.io/hexpm/v/wechat.svg)](https://hex.pm/packages/wechat)
 ![Hex.pm](https://img.shields.io/hexpm/dt/wechat.svg)
 
