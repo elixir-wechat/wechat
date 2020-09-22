@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         pair:
-          - elixir: 1.7.4
+          - elixir: 1.7.x
             otp: 19.x
           - elixir: 1.8.x
             otp: 20.x
