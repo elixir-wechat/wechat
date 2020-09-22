@@ -3,7 +3,20 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  tests:
+  format:
+    name: check-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Elixir
+        uses: actions/setup-elixir@v1
+        with:
+          elixir-version: 1.10.4
+          otp-version: 23.0.4
+      - mix deps.get
+      - mix format --check-formatted
+
+  test:
     runs-on: ubuntu-latest
     name: OTP ${{matrix.pair.otp}} / Elixir ${{matrix.pair.elixir}}
     strategy:
@@ -21,12 +34,10 @@ jobs:
             otp: 23.x
     steps:
       - uses: actions/checkout@v2
-      - name: Setup elixir
+      - name: Setup Elixir
         uses: actions/setup-elixir@v1
         with:
           elixir-version: ${{matrix.pair.elixir}}
           otp-version: ${{matrix.pair.otp}}
-      - name: Install Dependencies
-        run: mix deps.get --only test
-      - name: Run Tests
-        run: mix test
+      - mix deps.get
+      - mix test
