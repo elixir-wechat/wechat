@@ -45,7 +45,7 @@ defmodule Wechat.Mixfile do
       {:jason, "~> 1.0"},
       {:plug, "~> 1.8"},
       {:redix, ">= 0.0.0", optional: true},
-      {:bypass, "~> 1.0", only: :test},
+      {:bypass, "~> 2.1", only: :test},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
